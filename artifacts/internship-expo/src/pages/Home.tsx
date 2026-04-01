@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 
-const WA_LINK = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%B1%D9%88%D8%A7%D9%81%D8%AF%20%D9%81%D9%86%D8%AA%D9%83%202026";
+const WA_LINK = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%B1%D9%88%D8%A7%D9%81%D8%AF%20%D9%81%D9%86%D8%AA%D9%83%202026";
 const WA_MEETING = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%20%D9%84%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%B1%D9%88%D8%A7%D9%81%D8%AF%20%D9%81%D9%86%D8%AA%D9%83%202026";
 const EMAIL = "pr.technationclub@gmail.com";
 const FORMSPREE = "https://formspree.io/f/mnndorva";
 
-const SVGWA = () => (
-  <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#fff", flexShrink: 0 }}>
+const SVGWA = ({ size = 20 }: { size?: number }) => (
+  <svg viewBox="0 0 24 24" style={{ width: size, height: size, fill: "#fff", flexShrink: 0 }}>
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
   </svg>
 );
@@ -29,7 +29,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
 export default function Home() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [boothChoice, setBoothChoice] = useState<"own" | "provided" | "">("");
-  const [form, setForm] = useState({ org: "", name: "", phone: "", email: "", type: "", notes: "" });
+  const [form, setForm] = useState({ org: "", name: "", phone: "", email: "", sector: "", count: "", notes: "" });
   const [sending, setSending] = useState(false);
   const [showTY, setShowTY] = useState(false);
   const [btnErr, setBtnErr] = useState("");
@@ -37,7 +37,7 @@ export default function Home() {
   const setF = (k: string, v: string) => setForm(p => ({ ...p, [k]: v }));
 
   const submitForm = async () => {
-    if (!form.org || !form.name || !form.email || !form.type) {
+    if (!form.org || !form.name || !form.email) {
       setBtnErr("يرجى تعبئة جميع الحقول المطلوبة");
       return;
     }
@@ -48,16 +48,17 @@ export default function Home() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           الجهة: form.org, المسؤول: form.name, البريد: form.email,
-          الجوال: form.phone, "نوع المشاركة": form.type,
+          الجوال: form.phone, القطاع: form.sector,
+          "العدد المتوقع للمتدربين": form.count,
           "خيار البوث": boothChoice === "own" ? "بوث خاص" : boothChoice === "provided" ? "بوث مقدَّم" : "لم يُحدَّد",
           ملاحظات: form.notes,
-          _subject: `طلب مشاركة — روافد فنتك 2026 — ${form.org}`
+          _subject: `طلب مشاركة تدريب تعاوني — روافد فنتك 2026 — ${form.org}`
         }),
       });
       const d = await r.json();
       if (d.ok || d.next) {
         setShowTY(true);
-        setForm({ org: "", name: "", phone: "", email: "", type: "", notes: "" });
+        setForm({ org: "", name: "", phone: "", email: "", sector: "", count: "", notes: "" });
         setBoothChoice("");
       } else { setBtnErr("حدث خطأ — تواصل عبر واتساب"); }
     } catch { setBtnErr("تواصل عبر واتساب مباشرة"); }
@@ -78,10 +79,11 @@ export default function Home() {
         </div>
         <ul className="n-links">
           <li><a href="#why">لماذا تشارك؟</a></li>
-          <li><a href="#packages">الباقات</a></li>
+          <li><a href="#booth">خيارات البوث</a></li>
+          <li><a href="#benefits">المزايا</a></li>
           <li><a href="#orgs">الجهات</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#meeting" className="n-cta">احجز اجتماعاً</a></li>
+          <li><a href="#contact" className="n-cta">سجّل الآن</a></li>
         </ul>
         <a href="#contact" className="n-btn">سجّل جهتك</a>
       </nav>
@@ -113,8 +115,8 @@ export default function Home() {
             <div className="hd"><div className="hd-v">بهو جامعة الإمام</div><div className="hd-l">الرياض</div></div>
           </div>
           <div className="h-btns animate-fu-4">
-            <a href="#packages" className="btn-p">اطّلع على باقات المشاركة</a>
-            <a href="#meeting" className="btn-s">احجز اجتماع التدريب</a>
+            <a href="#contact" className="btn-p">سجّل جهتك الآن — مجاناً</a>
+            <a href="#why" className="btn-s">تعرف على المعرض</a>
           </div>
         </div>
         <div className="h-scroll"><div className="scroll-line" /></div>
@@ -122,10 +124,10 @@ export default function Home() {
 
       {/* ══════════ REACH BAR ══════════ */}
       <div className="reach2">
-        <div className="rb2"><div className="rb2-n">+3000</div><div className="rb2-l">زائر متوقع</div></div>
+        <div className="rb2"><div className="rb2-n">+3000</div><div className="rb2-l">طالب وطالبة متوقع</div></div>
         <div className="rb2"><div className="rb2-n">جامعات الرياض</div><div className="rb2-l">الجمهور المستهدف</div></div>
-        <div className="rb2"><div className="rb2-n">+20</div><div className="rb2-l">جهة مشاركة</div></div>
-        <div className="rb2"><div className="rb2-n">5</div><div className="rb2-l">أركان رئيسية</div></div>
+        <div className="rb2"><div className="rb2-n">+20</div><div className="rb2-l">جهة تدريب مشاركة</div></div>
+        <div className="rb2"><div className="rb2-n">مجانيٌّ</div><div className="rb2-l">تسجيل الجهات التدريبية</div></div>
       </div>
 
       {/* ══════════ WHY ══════════ */}
@@ -133,16 +135,17 @@ export default function Home() {
         <div className="wrap">
           <Reveal>
             <div className="lbl" style={{ color: "var(--green)" }}>لماذا تشارك؟</div>
-            <h2 className="h2">ما الذي <em>تكسبه</em> مؤسستك؟</h2>
+            <h2 className="h2">ما الذي <em>تكسبه</em> جهتك؟</h2>
+            <p className="sec-sub" style={{ maxWidth: 580 }}>معرض روافد فنتك هو الجسر المباشر بين مؤسستك وأكثر من 3000 طالب وطالبة باحثين عن فرصة تدريب تعاوني حقيقي.</p>
           </Reveal>
           <div className="why-grid">
             {[
-              { i: "👁️", t: "ظهور أمام آلاف الطلبة", d: "تواجد مباشر أمام أكثر من 3000 طالب وطالبة من كبرى جامعات الرياض المهتمين بالتقنية المالية" },
-              { i: "🎓", t: "استقطاب المتدربين", d: "منصة مثالية للوصول للكفاءات الجامعية وتقديم فرص التدريب التعاوني مباشرةً" },
-              { i: "📣", t: "حضور إعلامي موثّق", d: "ذكرك بلقبك الرسمي في كل إعلان على منصات المعرض قبل الفعالية وخلالها وبعدها" },
-              { i: "🤝", t: "شراكة معرفية مؤسسية", d: "ارتباط رسمي باسمك في أبرز فعالية فنتك أكاديمية بالرياض يعزز حضورك أمام الجيل الجامعي" },
-              { i: "📊", t: "بيانات الحضور", d: "تقرير ما بعد الفعالية بإحصاءات الحضور والتفاعل لقياس العائد على مشاركتك" },
-              { i: "🏆", t: "تكريم رسمي", d: "درع يُسلَّم رسمياً في حفل الختام وذكرك في البيانات الصحفية والدعوات الرسمية" },
+              { i: "🎯", t: "وصول مباشر لآلاف الطلبة", d: "تواجد مباشر أمام أكثر من 3000 طالب وطالبة من كبرى جامعات الرياض المهتمين بالتقنية المالية — كلهم يبحثون عن فرصة تدريب." },
+              { i: "🔍", t: "اكتشاف الكفاءات المناسبة", d: "تحدّث مع المتقدمين وجهاً لوجه، راجع ملفاتهم ومهاراتهم وقيّمهم مباشرةً قبل اتخاذ قرار القبول." },
+              { i: "🏢", t: "تعزيز حضور مؤسستك", d: "عرّف بثقافة شركتك وبيئة العمل وبرامج التدريب أمام جيل كامل من الكفاءات الجامعية بشكل مباشر وفعّال." },
+              { i: "📣", t: "حضور إعلامي موثَّق", d: "ذكر اسم جهتك في جميع منشورات المعرض الرسمية قبل الفعالية وخلالها وبعدها على كافة المنصات." },
+              { i: "📊", t: "بيانات المتقدمين", d: "احصل على بيانات الطلاب المهتمين بموافقتهم الصريحة لمتابعة عملية الاختيار بعد انتهاء المعرض." },
+              { i: "🤝", t: "شبكة علاقات مؤسسية", d: "تواصل مع جهات تدريبية أخرى من القطاع المالي والتقني السعودي في بيئة أكاديمية رسمية ومنظمة." },
             ].map((w, i) => (
               <Reveal key={w.t} delay={i * 60} className="wc">
                 <span className="wc-i">{w.i}</span>
@@ -154,227 +157,225 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ PACKAGES ══════════ */}
-      <section className="sec sec-tinted" id="packages">
+      {/* ══════════ BOOTH OPTIONS ══════════ */}
+      <section className="sec sec-dark" id="booth">
         <div className="wrap">
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: 42 }}>
-              <div className="lbl" style={{ justifyContent: "center", color: "var(--green)" }}>باقات المشاركة</div>
-              <h2 className="h2" style={{ textAlign: "center" }}>اختر مستوى <em>مشاركتك</em></h2>
-              <p className="sec-sub" style={{ textAlign: "center" }}>كل باقة مصممة لتعظيم أثر مؤسستك قبل الفعالية وخلالها وبعدها</p>
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <div className="lbl lt" style={{ justifyContent: "center" }}>خيارات المشاركة</div>
+              <h2 className="h2 wt" style={{ textAlign: "center" }}>اختر طريقة <em>تواجدك</em></h2>
+              <p style={{ color: "rgba(255,255,255,.45)", fontSize: ".88rem", marginTop: 10, maxWidth: 560, margin: "10px auto 0" }}>
+                نوفر لك مرونة كاملة — أحضر تصميمك الخاص أو استفد من بوثنا الجاهز المجهَّز بهويتك البصرية.
+              </p>
             </div>
           </Reveal>
 
-          <div className="pkgs">
-
-            {/* ── STRATEGIC ── */}
-            <Reveal>
-              <div className="pkg2 strat">
-                <div className="pkg2-header">
-                  <div className="pkg2-top">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            {/* OWN BOOTH */}
+            <Reveal delay={0}>
+              <div style={{ background: "var(--surf)", borderRadius: 16, overflow: "hidden", border: "2px solid var(--b1)", transition: "all .3s" }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = "var(--green)"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 36px rgba(27,107,82,.15)"; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = "var(--b1)"; e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
+                <div style={{ background: "linear-gradient(135deg,#1B6B52,#2A8A6A)", padding: "22px 26px 20px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 8 }}>
+                    <div style={{ width: 52, height: 52, background: "rgba(255,255,255,.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.6rem", flexShrink: 0 }}>🏗️</div>
                     <div>
-                      <div className="pkg2-name">شريك التدريب الاستراتيجي</div>
-                      <div className="pkg2-sub">Strategic Training Partner &nbsp;|&nbsp; عدد محدود</div>
-                    </div>
-                    <div className="pkg2-price-box">
-                      <div className="pkg2-price-num">12,000</div>
-                      <div className="pkg2-price-cur">ريال سعودي</div>
-                      <div className="pkg2-price-tag">EXCLUSIVE</div>
+                      <div style={{ fontFamily: "'Cairo',sans-serif", fontSize: "1.25rem", fontWeight: 900, color: "#fff", lineHeight: 1.15 }}>البوث الخاص</div>
+                      <div style={{ fontSize: ".72rem", color: "rgba(255,255,255,.7)", marginTop: 2 }}>Bring Your Own Booth</div>
                     </div>
                   </div>
+                  <p style={{ fontSize: ".82rem", color: "rgba(255,255,255,.7)", lineHeight: 1.8, margin: 0 }}>
+                    لديك هوية بصرية قوية وتصميم خاص؟ أحضر بوثك كاملاً مع جميع تجهيزاتك ومواد التدريب الخاصة بك.
+                  </p>
                 </div>
-                <div className="pkg2-body">
-                  <div className="pkg2-section-title">المميزات الحصرية</div>
-                  <div className="pkg2-section-sub">هذا بيع "تأثير" — ليس مجرد إعلان</div>
-                  <div className="pkg2-divider" />
-                  <div className="pkg2-list">
+                <div style={{ padding: "22px 26px" }}>
+                  <div style={{ fontFamily: "'Cairo',sans-serif", fontSize: ".82rem", fontWeight: 800, color: "var(--ink)", marginBottom: 14 }}>ما يُوفَّر لك</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                     {[
-                      ["لقب: شريك التدريب الاستراتيجي الرسمي", "ذكرك بهذا اللقب في كل إعلان ومنشور"],
-                      ["جناح رئيسي بأفضل موقع", "قرب المسرح — موقع استراتيجي"],
-                      ["كلمة رئيسية في حفل الافتتاح", ""],
-                      ["Branding على المسرح", "خلفية الجلسات بشعار الجهة"],
-                      ["رعاية جلسة تدريبية باسمك", '"الجلسة التدريبية برعاية..."'],
-                      ["متحدث في Panel رئيسي", ""],
-                      ["Roll-up عند المدخل الرئيسي", ""],
-                      ["أولوية الوصول لقاعدة البيانات", "بيانات المتقدمين بموافقة الطلاب"],
-                      ["فيديو مقابلة رسمية", "يُنشر على حسابات المعرض الرسمية"],
-                      ["الظهور في العرض الترويجي", "خلال الفعالية على الشاشات"],
-                      ["درع فاخر يُسلَّم على المسرح", "تسليم رسمي في حفل الختام"],
-                      ["إدراج في البيان الصحفي الرسمي", ""],
-                      ['ختم "شريك تدريب استراتيجي لروافد فنتك"', "تستخدمه في حساباتك وموادك الرسمية"],
-                      ["دعوات VIP للمسؤولين", ""],
-                      ["تغطية مصورة احترافية للجناح", ""],
-                      ["ملخص إحصائي تفصيلي بعد الفعالية", ""],
-                    ].map(([m, d]) => (
-                      <div className="pkg2-item" key={m}>
-                        <div className="pkg2-check">✓</div>
-                        <div><div className="pkg2-item-main">{m}</div>{d && <div className="pkg2-item-desc">{d}</div>}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="pkg2-footer">
-                  <div className="pkg2-tagline">فرصة حصرية للتأثير والحضور القوي في أكبر معرض فنتك أكاديمي بالرياض</div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* ── GOLDEN ── */}
-            <Reveal>
-              <div className="pkg2 gold2">
-                <div className="pkg2-header">
-                  <div className="pkg2-top">
-                    <div>
-                      <div className="pkg2-name">شريك التدريب الذهبي</div>
-                      <div className="pkg2-sub">Gold Training Partner &nbsp;|&nbsp; عدد محدود</div>
-                    </div>
-                    <div className="pkg2-price-box">
-                      <div className="pkg2-price-num">6,000</div>
-                      <div className="pkg2-price-cur">ريال سعودي</div>
-                      <div className="pkg2-price-tag">LIMITED</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="pkg2-body">
-                  <div className="pkg2-section-title">المميزات</div>
-                  <div className="pkg2-section-sub">تركيز على التفاعل المباشر + الحضور الإعلامي الثابت</div>
-                  <div className="pkg2-divider" />
-                  <div className="pkg2-list">
-                    {[
-                      ["لقب: شريك التدريب الذهبي الرسمي", "ذكرك بهذا اللقب في كل إعلان ومنشور"],
-                      ["جناح بموقع استراتيجي", "موقع متميز"],
-                      ["المشاركة في الأركان الخمسة الرئيسة", ""],
-                      ["المشاركة في الجلسات الحوارية", ""],
-                      ["شعار في جميع المواد التسويقية", ""],
-                      ["توزيع مواد تعريفية", "داخل حقائب الحضور"],
-                      ["الظهور في العرض الترويجي", ""],
-                      ["إدراج في كتيب المعرض", ""],
-                      ["بوست تعريفي قبل الحدث", ""],
-                      ["ذكر في الحفل الختامي", ""],
-                      ["درع تكريمي رسمي", ""],
-                      ["ملخص إحصائي مختصر بعد الفعالية", ""],
-                      ["دعوات VIP للمسؤولين", ""],
-                    ].map(([m, d]) => (
-                      <div className="pkg2-item" key={m}>
-                        <div className="pkg2-check">✓</div>
-                        <div><div className="pkg2-item-main">{m}</div>{d && <div className="pkg2-item-desc">{d}</div>}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="pkg2-footer">
-                  <div className="pkg2-tagline">حضور إعلامي ثابت + تفاعل مباشر مع أكثر من 3000 طالب</div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* ── IN-KIND / PARTNERS ── */}
-            <Reveal>
-              <div className="pkg2 inkind">
-                <div className="pkg2-header">
-                  <div className="pkg2-top">
-                    <div>
-                      <div className="pkg2-name">شركاء النجاح</div>
-                      <div className="pkg2-sub">Training In-Kind Partners &nbsp;|&nbsp; بدون مقابل مالي</div>
-                    </div>
-                    <div className="pkg2-price-box" style={{ background: "rgba(255,255,255,.15)" }}>
-                      <div className="pkg2-price-num" style={{ fontSize: "1rem" }}>عيني</div>
-                      <div className="pkg2-price-cur">بدون مقابل مالي</div>
-                      <div className="pkg2-price-tag">6 أنواع</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="pkg2-body">
-                  <div className="pkg2-section-title">المميزات</div>
-                  <div className="pkg2-section-sub">حضور إعلامي موثّق مقابل دعم عيني متخصص</div>
-                  <div className="pkg2-divider" />
-                  <div className="pkg2-list">
-                    {[
-                      { c: "#2D6BE4", t: "شريك أكاديمي", d: "شعار على شهادات المشاركين + بوث لعرض مواد الجهة + ذكر في الافتتاح" },
-                      { c: "#7C3AED", t: "شريك مطبوعات", d: "شعار على جميع مطبوعات المعرض + بانر عند نقطة التوزيع + إدراج في الدعوات" },
-                      { c: "#D97706", t: "شريك ضيافة", d: "شعار على أكواب وأدوات الضيافة + إعلان صوتي + ذكر في كلمتي الافتتاح والختام" },
-                      { c: "#DC2626", t: "شريك إعلامي", d: "إشارة رسمية في كل محتوى + Roll-up في منطقة التصوير + حق نشر المحتوى باسمكم" },
-                      { c: "#0891B2", t: "شريك تشغيلي", d: "شعار على بطاقات الحضور والـ wristbands + بانر في منطقة التسجيل" },
-                      { c: "#059669", t: "شريك النجاح", d: "شعار داخل كيس الهدية + ذكر شكر خاص في كلمة الختام + بطاقة تقدير رسمية" },
-                    ].map(p => (
-                      <div key={p.t} className="pkg2-item" style={{ borderRight: `3px solid ${p.c}`, paddingRight: 12, marginBottom: 6, borderRadius: "0 6px 6px 0" }}>
-                        <div className="pkg2-check" style={{ background: p.c, width: 24, height: 24, borderRadius: 6 }}>✓</div>
+                      ["📐", "مساحة مخصصة تناسب تصميمك", "تُحدَّد الأبعاد حسب الطلب"],
+                      ["⚡", "طاقم الكهرباء والخدمات", "متوفر طوال فترة المعرض"],
+                      ["🗺️", "لوحات الإرشاد وتحديد الموقع", "ضمن خريطة المعرض الرسمية"],
+                      ["🔒", "أمن الجناح وحمايته", "طاقم أمن متخصص"],
+                      ["📣", "ذكرك في المواد الإعلانية", "على جميع منصات المعرض"],
+                    ].map(([ic, t, d]) => (
+                      <div key={t} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                        <span style={{ width: 32, height: 32, background: "rgba(27,107,82,.08)", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".95rem", flexShrink: 0 }}>{ic}</span>
                         <div>
-                          <div className="pkg2-item-main" style={{ color: p.c }}>{p.t}</div>
-                          <div className="pkg2-item-desc">{p.d}</div>
+                          <div style={{ fontSize: ".83rem", fontWeight: 700, color: "var(--ink)", fontFamily: "'Cairo',sans-serif" }}>{t}</div>
+                          <div style={{ fontSize: ".72rem", color: "var(--muted-c)", marginTop: 1 }}>{d}</div>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div style={{ marginTop: 14, padding: "10px 14px", background: "rgba(13,125,108,.07)", borderRadius: 8, border: "1px solid rgba(13,125,108,.18)" }}>
-                    <p style={{ fontSize: ".77rem", color: "var(--teal2)", fontWeight: 600, textAlign: "center", lineHeight: 1.6 }}>لكل شريك: إعلان على الموقع الرسمي + ذكر بلقبه في حسابات التواصل</p>
+                  <div style={{ marginTop: 18, padding: "11px 14px", background: "rgba(27,107,82,.06)", border: "1.5px dashed rgba(27,107,82,.25)", borderRadius: 9, fontSize: ".8rem", color: "var(--green)", fontWeight: 700, textAlign: "center" }}>
+                    الأنسب للجهات ذات الهوية البصرية المميزة
                   </div>
-                </div>
-                <div className="pkg2-footer">
-                  <div className="pkg2-tagline">شراكة عينية تُعظّم الحضور الإعلامي بدون تكلفة مالية</div>
                 </div>
               </div>
             </Reveal>
 
-            {/* ── EXHIBITORS ── */}
-            <Reveal>
-              <div className="pkg2 plat">
-                <div className="pkg2-header">
-                  <div className="pkg2-top">
-                    <div>
-                      <div className="pkg2-name">جهات التدريب المشاركة</div>
-                      <div className="pkg2-sub">Training Exhibitors &nbsp;|&nbsp; بوثك أو بوثنا الجاهز</div>
+            {/* PROVIDED BOOTH */}
+            <Reveal delay={120}>
+              <div style={{ background: "var(--surf)", borderRadius: 16, overflow: "hidden", border: "2px solid var(--b1)", transition: "all .3s" }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = "var(--teal)"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 36px rgba(13,125,108,.15)"; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = "var(--b1)"; e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
+                <div style={{ background: "linear-gradient(135deg,#0D7D6C,#1A9E8A)", padding: "22px 26px 20px" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 10, marginBottom: 8 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                      <div style={{ width: 52, height: 52, background: "rgba(255,255,255,.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.6rem", flexShrink: 0 }}>✨</div>
+                      <div>
+                        <div style={{ fontFamily: "'Cairo',sans-serif", fontSize: "1.25rem", fontWeight: 900, color: "#fff", lineHeight: 1.15 }}>البوث المقدَّم</div>
+                        <div style={{ fontSize: ".72rem", color: "rgba(255,255,255,.7)", marginTop: 2 }}>Provided Booth</div>
+                      </div>
                     </div>
-                    <div className="pkg2-price-box">
-                      <div className="pkg2-price-num" style={{ fontSize: "1rem" }}>تسجيل</div>
-                      <div className="pkg2-price-cur">مجاني — محدود</div>
-                      <div className="pkg2-price-tag">REGISTER FREE</div>
-                    </div>
+                    <span style={{ background: "rgba(255,255,255,.2)", border: "1px solid rgba(255,255,255,.3)", color: "#fff", fontSize: ".6rem", fontWeight: 800, padding: "4px 10px", borderRadius: 100, letterSpacing: 1, whiteSpace: "nowrap", flexShrink: 0 }}>الأكثر طلباً</span>
                   </div>
+                  <p style={{ fontSize: ".82rem", color: "rgba(255,255,255,.7)", lineHeight: 1.8, margin: 0 }}>
+                    ركّز على استقطاب المتدربين فقط — نتكفّل بكل شيء. بوث احترافي مُجهَّز بالكامل بشعار وألوان مؤسستك.
+                  </p>
                 </div>
-                <div className="pkg2-body">
-                  <div className="pkg2-section-title">المميزات</div>
-                  <div className="pkg2-section-sub">أحضر بوثك أو استفد من بوثنا الجاهز — المطلوب المحتوى والفريق فقط</div>
-                  <div className="pkg2-divider" />
-                  {/* Booth choice highlight */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
-                    <div style={{ border: "1.5px solid rgba(27,107,82,.3)", borderRadius: 10, padding: "14px 12px", textAlign: "center", background: "rgba(27,107,82,.04)" }}>
-                      <div style={{ fontSize: "1.4rem", marginBottom: 6 }}>🏗️</div>
-                      <div style={{ fontFamily: "'Cairo',sans-serif", fontWeight: 800, fontSize: ".82rem", color: "var(--ink)", marginBottom: 3 }}>بوثك الخاص</div>
-                      <div style={{ fontSize: ".7rem", color: "var(--muted-c)", lineHeight: 1.6 }}>أحضر تصميمك الكامل وهويتك البصرية</div>
-                    </div>
-                    <div style={{ border: "1.5px solid rgba(13,125,108,.3)", borderRadius: 10, padding: "14px 12px", textAlign: "center", background: "rgba(13,125,108,.04)" }}>
-                      <div style={{ fontSize: "1.4rem", marginBottom: 6 }}>✨</div>
-                      <div style={{ fontFamily: "'Cairo',sans-serif", fontWeight: 800, fontSize: ".82rem", color: "var(--ink)", marginBottom: 3 }}>بوث مقدَّم جاهز</div>
-                      <div style={{ fontSize: ".7rem", color: "var(--muted-c)", lineHeight: 1.6 }}>بوث احترافي بشعارك وألوانك بدون جهد لوجستي</div>
-                    </div>
-                  </div>
-                  <div className="pkg2-list">
+                <div style={{ padding: "22px 26px" }}>
+                  <div style={{ fontFamily: "'Cairo',sans-serif", fontSize: ".82rem", fontWeight: 800, color: "var(--ink)", marginBottom: 14 }}>كل هذا مُجهَّز لك</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                     {[
-                      ["بوث مجهّز بالكامل (إن اخترت البوث المقدَّم)", "طاولة، كراسي، شاشة، إضاءة، واي فاي"],
-                      ["الشعار في مواد المعرض الدعائية", ""],
-                      ["إعلان على الموقع الرسمي للمعرض", ""],
-                      ["إشارة في حسابات التواصل للمعرض", ""],
-                    ].map(([m, d]) => (
-                      <div className="pkg2-item" key={m}>
-                        <div className="pkg2-check">✓</div>
-                        <div><div className="pkg2-item-main">{m}</div>{d && <div className="pkg2-item-desc">{d}</div>}</div>
+                      ["🖼️", "بوث بتصميم احترافي", "مُخصَّص بشعارك وألوانك الرسمية"],
+                      ["🖥️", "طاولة وكراسي وشاشة عرض", "مقاس 55 بوصة لعرض محتواكم"],
+                      ["📶", "إنترنت مخصص وكهرباء", "اتصال مستقر طوال اليومين"],
+                      ["💡", "إضاءة احترافية للجناح", "إضاءة LED موجّهة للبوث"],
+                      ["🛠️", "فريق دعم مخصص", "يساعدك قبل وخلال وبعد المعرض"],
+                    ].map(([ic, t, d]) => (
+                      <div key={t} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                        <span style={{ width: 32, height: 32, background: "rgba(13,125,108,.08)", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".95rem", flexShrink: 0 }}>{ic}</span>
+                        <div>
+                          <div style={{ fontSize: ".83rem", fontWeight: 700, color: "var(--ink)", fontFamily: "'Cairo',sans-serif" }}>{t}</div>
+                          <div style={{ fontSize: ".72rem", color: "var(--muted-c)", marginTop: 1 }}>{d}</div>
+                        </div>
                       </div>
                     ))}
                   </div>
-                </div>
-                <div className="pkg2-footer">
-                  <div className="pkg2-tagline">كل ما تحتاج إحضاره: محتوى تدريبي تعريفي + موظفون متخصصون</div>
+                  <div style={{ marginTop: 18, padding: "11px 14px", background: "rgba(13,125,108,.06)", border: "1.5px dashed rgba(13,125,108,.3)", borderRadius: 9, fontSize: ".8rem", color: "var(--teal)", fontWeight: 700, textAlign: "center" }}>
+                    الأنسب للجهات التي تريد راحة لوجستية تامة
+                  </div>
                 </div>
               </div>
             </Reveal>
+          </div>
 
+          {/* Comparison note */}
+          <Reveal delay={200}>
+            <div style={{ marginTop: 24, background: "rgba(61,170,134,.06)", border: "1px solid rgba(61,170,134,.18)", borderRadius: 12, padding: "18px 24px", textAlign: "center" }}>
+              <p style={{ color: "rgba(255,255,255,.6)", fontSize: ".84rem", lineHeight: 1.8, margin: 0 }}>
+                <span style={{ color: "var(--glt)", fontWeight: 700 }}>كلا الخيارين مجانيان </span>
+                للجهات التدريبية المشاركة — اختر ما يناسب مؤسستك وحدّده في نموذج التسجيل أدناه.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════ WHAT TO EXPECT ══════════ */}
+      <section className="sec sec-tinted" id="expect">
+        <div className="wrap">
+          <Reveal>
+            <div className="lbl" style={{ color: "var(--green)" }}>يوم المعرض</div>
+            <h2 className="h2">ماذا يحدث <em>خلال المعرض</em>؟</h2>
+            <p className="sec-sub" style={{ maxWidth: 560 }}>يومان مكثفان مليئان بالتواصل المباشر والفرص الحقيقية لاكتشاف المواهب الجامعية.</p>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14, marginTop: 38 }}>
+            {[
+              { n: "01", i: "🚶", t: "تدفق الزوار المستمر", d: "يتنقل الطلاب من بوث لآخر يتعرفون على الجهات المتاحة ويسجلون اهتمامهم بالتدريب التعاوني." },
+              { n: "02", i: "💬", t: "محادثات مباشرة", d: "ممثلو جهتك يتحدثون مع الطلاب وجهاً لوجه، يشرحون برامج التدريب، ويجيبون على الأسئلة." },
+              { n: "03", i: "📄", t: "استقبال السير الذاتية", d: "يقدم الطلاب سيرهم الذاتية والمعلوماتهم مباشرةً لفريق جهتك لاختيار الأنسب." },
+              { n: "04", i: "🎙️", t: "جلسات على المسرح", d: "فرصة للتحدث عن برنامج التدريب التعاوني في شركتك أمام جمهور واسع في الجلسات العامة." },
+              { n: "05", i: "🌐", t: "تواصل مع الجهات الأخرى", d: "التقِ بممثلي جهات تدريبية أخرى من القطاع المالي والتقني وابنِ شبكة علاقات مؤسسية متينة." },
+              { n: "06", i: "🏆", t: "حفل الختام والتكريم", d: "في نهاية المعرض تُكرَّم جميع الجهات المشاركة بدرع رسمي على المسرح الرئيسي أمام الحضور." },
+            ].map((f, i) => (
+              <Reveal key={f.n} delay={i * 50}>
+                <div className="wc" style={{ height: "100%" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+                    <span style={{ fontFamily: "'Cairo',sans-serif", fontSize: ".6rem", fontWeight: 800, letterSpacing: 2, color: "var(--glt)", opacity: .7 }}>{f.n}</span>
+                    <span style={{ fontSize: "1.4rem" }}>{f.i}</span>
+                  </div>
+                  <div className="wc-t">{f.t}</div>
+                  <div className="wc-d">{f.d}</div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ 10 BENEFITS ══════════ */}
+      <section className="features-sec" id="benefits">
+        <div className="wrap">
+          <Reveal>
+            <div style={{ textAlign: "center" }}>
+              <div className="lbl lt" style={{ justifyContent: "center" }}>ماذا تحصل كجهة تدريب؟</div>
+              <h2 className="h2 wt" style={{ textAlign: "center" }}>10 مزايا <em>مضمونة</em> لكل جهة مشاركة</h2>
+              <p style={{ color: "rgba(255,255,255,.42)", fontSize: ".85rem", marginTop: 8, textAlign: "center" }}>كل ميزة مصممة لتعظيم استفادتك من يومَي المعرض وما بعدهما</p>
+            </div>
+          </Reveal>
+          <div className="feat-grid">
+            {[
+              { n: "01", i: "📣", t: "إعلان في كل منشور", d: "ذكر اسمك في كل منشور رسمي قبل الفعالية وخلالها وبعدها" },
+              { n: "02", i: "🌐", t: "ظهور على الموقع الرسمي", d: "شعارك وبيانات برنامجك التدريبي على الموقع الرسمي للمعرض" },
+              { n: "03", i: "🎓", t: "استقطاب مباشر للمتدربين", d: "وصول مباشر لأكثر من 3000 طالب يبحثون عن تدريب" },
+              { n: "04", i: "📸", t: "تغطية مصورة احترافية", d: "صور ومقاطع فيديو لجناحك وفريقك للاستخدام في حملاتكم" },
+              { n: "05", i: "🏆", t: "درع تكريمي رسمي", d: "تسليم رسمي على المسرح في حفل الختام مع توثيق ونشر" },
+              { n: "06", i: "📊", t: "تقرير بعد الفعالية", d: "إحصائيات الحضور والتفاعل لقياس نتائج مشاركتك" },
+              { n: "07", i: "🤝", t: "شبكة العلاقات المؤسسية", d: "تواصل مع جهات القطاع المالي والتقني في بيئة أكاديمية" },
+              { n: "08", i: "📱", t: "ريلز مقصوص باسمك", d: "مقطع قصير احترافي يُنشر على حسابات المعرض الرسمية" },
+              { n: "09", i: "🏷️", t: 'ختم "شريك تدريب رسمي"', d: "شارة رقمية رسمية لاستخدامها في موادك وحساباتك" },
+              { n: "10", i: "🎯", t: "إدراج في كتيب المعرض", d: "صفحة خاصة بجهتك وبرنامجها التدريبي في الكتيّب الرسمي" },
+            ].map((f, i) => (
+              <Reveal key={f.n} delay={i * 50}>
+                <div className="feat-card">
+                  <span className="feat-num">{f.n}</span>
+                  <span className="feat-icon">{f.i}</span>
+                  <div className="feat-title">{f.t}</div>
+                  <div className="feat-desc">{f.d}</div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ WHO ATTENDS ══════════ */}
+      <section className="sec sec-light">
+        <div className="wrap">
+          <Reveal>
+            <div className="lbl" style={{ color: "var(--green)" }}>من يحضر المعرض؟</div>
+            <h2 className="h2">طلاب <em>متحمسون</em> يبحثون عنك</h2>
+            <p className="sec-sub" style={{ maxWidth: 580 }}>يستهدف المعرض طلاب وطالبات الجامعات من تخصصات متعددة، كلهم يبحثون عن فرصة تدريب تعاوني حقيقية في بيئة مهنية.</p>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 13, marginTop: 38 }}>
+            {[
+              { i: "💻", t: "علوم الحاسب والبرمجة", d: "مطورون وأخصائيو تقنية المعلومات" },
+              { i: "📊", t: "إدارة الأعمال والتسويق", d: "مهتمون بريادة الأعمال والإدارة" },
+              { i: "💰", t: "المالية والمصرفية", d: "طلاب تمويل ومحاسبة واقتصاد" },
+              { i: "📈", t: "إدارة المخاطر والتأمين", d: "متخصصو ضبط المخاطر والامتثال" },
+              { i: "🎨", t: "تصميم تجربة المستخدم", d: "مصممو UX/UI ومنتجات رقمية" },
+              { i: "📋", t: "الموارد البشرية", d: "أخصائيو إدارة المواهب والتطوير" },
+              { i: "⚗️", t: "العلوم وتقنية البيانات", d: "محللو بيانات وذكاء اصطناعي" },
+              { i: "⚙️", t: "الهندسة الصناعية والنظم", d: "مهندسون في تحسين العمليات" },
+            ].map((c, i) => (
+              <Reveal key={c.t} delay={i * 50}>
+                <div style={{ background: "var(--surf)", border: "1px solid var(--b1)", borderRadius: 12, padding: "20px 16px", textAlign: "center", transition: "all .3s cubic-bezier(.22,.68,0,1.2)" }}
+                  onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 22px rgba(27,107,82,.09)"; e.currentTarget.style.borderColor = "var(--b2)"; }}
+                  onMouseOut={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "var(--b1)"; }}>
+                  <span style={{ fontSize: "1.7rem", display: "block", marginBottom: 10 }}>{c.i}</span>
+                  <div style={{ fontFamily: "'Cairo',sans-serif", fontSize: ".88rem", fontWeight: 800, color: "var(--ink)", marginBottom: 5, lineHeight: 1.3 }}>{c.t}</div>
+                  <div style={{ fontSize: ".72rem", color: "var(--muted-c)", lineHeight: 1.7 }}>{c.d}</div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ══════════ ORGS ══════════ */}
-      <section className="sec sec-light" id="orgs">
+      <section className="sec sec-tinted" id="orgs">
         <div className="wrap">
           <Reveal>
             <div style={{ textAlign: "center" }}>
@@ -440,35 +441,29 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ══════════ 10 FEATURES ══════════ */}
-      <section className="features-sec">
+      {/* ══════════ STEPS ══════════ */}
+      <section className="sec sec-light">
         <div className="wrap">
           <Reveal>
-            <div style={{ textAlign: "center" }}>
-              <div className="lbl lt" style={{ justifyContent: "center" }}>ماذا تحصل كجهة تدريب؟</div>
-              <h2 className="h2 wt" style={{ textAlign: "center" }}>10 مزايا <em>تميّزك</em> بين الجهات</h2>
-              <p style={{ color: "rgba(255,255,255,.42)", fontSize: ".85rem", marginTop: 8, textAlign: "center" }}>كل ميزة مصممة لتعظيم الأثر الفعلي لمؤسستك</p>
-            </div>
+            <div className="lbl" style={{ color: "var(--green)" }}>خطوات المشاركة</div>
+            <h2 className="h2">كيف <em>تشارك</em> جهتك؟</h2>
+            <p className="sec-sub" style={{ maxWidth: 560 }}>عملية بسيطة من 4 خطوات — من التسجيل حتى اليوم الأول في المعرض.</p>
           </Reveal>
-          <div className="feat-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 14, marginTop: 40, position: "relative" }}>
             {[
-              { n: "01", i: "📣", t: "إعلان في كل منشور", d: "ذكرك بلقبك الرسمي في كل منشور على حسابات التواصل قبل وخلال وبعد الفعالية" },
-              { n: "02", i: "🎙️", t: "حضور على المسرح", d: "كلمة رئيسية أو مشاركة في الجلسات أمام آلاف الحضور مباشرةً" },
-              { n: "03", i: "🎓", t: "استقطاب المتدربين", d: "وصول مباشر لأكثر من 3000 طالب وطالبة من كبرى جامعات الرياض" },
-              { n: "04", i: "📸", t: "تغطية مصورة احترافية", d: "صور ومقاطع لجناحك وفريقك تُستخدم في حملاتك الرقمية ومواد التواصل" },
-              { n: "05", i: "🏆", t: "درع تكريمي رسمي", d: "تسليم رسمي أمام الحضور في حفل الختام مع توثيق ونشر على المنصات" },
-              { n: "06", i: "📊", t: "تقرير إحصائي بعد الفعالية", d: "بيانات الحضور والتفاعل لقياس العائد الفعلي على استثمارك في الفعالية" },
-              { n: "07", i: "🤝", t: "شبكة علاقات مؤسسية", d: "لقاء مع جهات أخرى من القطاع المالي والتقني في جو أكاديمي رسمي" },
-              { n: "08", i: "📱", t: "ريلز مقصوص باسمك", d: "مقطع قصير احترافي عن جناحك أو مشاركتك يُنشر على حسابات المعرض الرسمية" },
-              { n: "09", i: "🏷️", t: 'ختم "شريك تدريب رسمي"', d: "شارة رقمية رسمية تستخدمها في موادك وحساباتك بعد الفعالية" },
-              { n: "10", i: "🎯", t: "توزيع مواد تعريفية", d: "إدراج كتيباتك وهداياك الترويجية في حقيبة كل حاضر في الفعالية" },
-            ].map((f, i) => (
-              <Reveal key={f.n} delay={i * 50}>
-                <div className="feat-card">
-                  <span className="feat-num">{f.n}</span>
-                  <span className="feat-icon">{f.i}</span>
-                  <div className="feat-title">{f.t}</div>
-                  <div className="feat-desc">{f.d}</div>
+              { n: "1", i: "📝", t: "التسجيل المبدئي", d: "أكمل نموذج التسجيل أدناه وحدّد خيار البوث المناسب لك." },
+              { n: "2", i: "📞", t: "التواصل والتأكيد", d: "يتواصل معك فريقنا خلال 24 ساعة لتأكيد التسجيل ومتابعة التفاصيل." },
+              { n: "3", i: "🎨", t: "التجهيز والتنسيق", d: "نرسل لك مواصفات الجناح وتحتاج فقط تزودنا بشعارك ومحتواك." },
+              { n: "4", i: "🎉", t: "يوم المعرض", d: "احضر بفريقك وابدأ بالتواصل مع الطلاب الباحثين عن تدريب." },
+            ].map((s, i) => (
+              <Reveal key={s.n} delay={i * 80}>
+                <div style={{ textAlign: "center", padding: "26px 20px", background: "var(--surf)", border: "1px solid var(--b1)", borderRadius: 13, position: "relative", transition: "all .3s" }}
+                  onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(27,107,82,.09)"; e.currentTarget.style.borderColor = "var(--b2)"; }}
+                  onMouseOut={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "var(--b1)"; }}>
+                  <div style={{ width: 38, height: 38, background: "var(--green)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cairo',sans-serif", fontWeight: 900, color: "#fff", fontSize: "1rem", margin: "0 auto 14px" }}>{s.n}</div>
+                  <span style={{ fontSize: "1.6rem", display: "block", marginBottom: 10 }}>{s.i}</span>
+                  <div style={{ fontFamily: "'Cairo',sans-serif", fontSize: ".9rem", fontWeight: 800, color: "var(--ink)", marginBottom: 7 }}>{s.t}</div>
+                  <div style={{ fontSize: ".78rem", color: "var(--muted-c)", lineHeight: 1.8 }}>{s.d}</div>
                 </div>
               </Reveal>
             ))}
@@ -480,13 +475,13 @@ export default function Home() {
       <section className="meeting-sec" id="meeting">
         <div className="meeting-inner">
           <Reveal>
-            <div className="meeting-badge">📅 احجز اجتماع التدريب</div>
+            <div className="meeting-badge">📅 احجز اجتماع المشاركة</div>
             <h2 className="meeting-title">نناقش التفاصيل معك<br /><em>في اجتماع مخصص</em></h2>
-            <p className="meeting-desc">لا تكتفِ بقراءة الباقات — نسعد بتخصيص 30 دقيقة نشرح فيها آليات التنفيذ، نجيب على أسئلتك، ونناقش أفضل صيغة تناسب مؤسستك وأهدافها التدريبية.</p>
+            <p className="meeting-desc">لا تكتفِ بالنموذج — نسعد بتخصيص 30 دقيقة نشرح فيها آليات التنفيذ، نجيب على أسئلتك، ونناقش أفضل خيار للبوث يناسب مؤسستك وبرامجها التدريبية.</p>
             <div className="meeting-cards">
               <div className="meeting-card"><div className="mc-icon">⏱️</div><div><div className="mc-t">30 دقيقة</div><div className="mc-d">اجتماع مركّز عبر زووم أو حضورياً</div></div></div>
               <div className="meeting-card"><div className="mc-icon">📋</div><div><div className="mc-t">شرح تفصيلي</div><div className="mc-d">آليات التنفيذ ومواعيد التسليم</div></div></div>
-              <div className="meeting-card"><div className="mc-icon">✏️</div><div><div className="mc-t">تخصيص الباقة</div><div className="mc-d">نناقش أي تعديلات تناسب مؤسستك</div></div></div>
+              <div className="meeting-card"><div className="mc-icon">✏️</div><div><div className="mc-t">تخصيص التجربة</div><div className="mc-d">نناقش أي متطلبات خاصة لمؤسستك</div></div></div>
             </div>
             <div className="meeting-btns">
               <a className="btn-wa" href={WA_MEETING} target="_blank" rel="noreferrer"><SVGWA />احجز عبر واتساب</a>
@@ -502,16 +497,18 @@ export default function Home() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 8 }}>
               <div className="lbl" style={{ justifyContent: "center", color: "var(--green)" }}>أسئلة شائعة</div>
-              <h2 className="h2" style={{ textAlign: "center" }}>ما يسألنا عنه <em>الشركاء</em></h2>
+              <h2 className="h2" style={{ textAlign: "center" }}>ما تسأله <em>الجهات التدريبية</em></h2>
             </div>
           </Reveal>
-          <div className="faq-list">
+          <div className="faq-list" style={{ maxWidth: 780, margin: "0 auto" }}>
             {[
-              { q: "هل رسوم المشاركة شاملة لجميع المزايا المذكورة؟", a: "نعم، المبلغ المذكور يشمل جميع المزايا بدون رسوم إضافية. أي تخصيص خارج الباقة يُناقش في اجتماع المشاركة." },
-              { q: "هل يمكن تخصيص الباقة حسب احتياجاتنا التدريبية؟", a: "نقبل طلبات التخصيص ضمن حدود معينة. يمكن مناقشة ذلك في اجتماع المشاركة المخصص لمؤسستك." },
-              { q: "ما الجمهور المتوقع للفعالية؟", a: "طلبة جامعات الرياض المهتمين بالتقنية المالية والمجالات المرتبطة، مع توقعات بتجاوز 3000 زائر خلال اليومين." },
-              { q: "ما الموعد النهائي لتأكيد المشاركة؟", a: "يُفضل التأكيد قبل شهر من الفعالية لضمان إدراج شعارك في جميع المواد المطبوعة والرقمية." },
-              { q: "كيف يسير اجتماع المشاركة؟", a: "اجتماع لمدة 30 دقيقة يشرح فيه فريقنا تفاصيل الباقات، آليات التنفيذ، ومواعيد التسليم، ونجيب على جميع أسئلتكم قبل اتخاذ القرار." },
+              { q: "هل المشاركة مجانية تماماً للجهات التدريبية؟", a: "نعم، المشاركة في معرض روافد فنتك مجانية بالكامل لجميع الجهات التدريبية — سواء اخترتم البوث الخاص أو البوث المقدَّم. البوث المقدَّم كذلك مجاني ومجهَّز بالكامل بشعاركم." },
+              { q: "ما الفرق بين البوث الخاص والبوث المقدَّم؟", a: "البوث الخاص يعني أنكم تحضرون تصميمكم الكامل ومواد جهتكم، بينما البوث المقدَّم يُجهَّز من قبلنا بالكامل بشعار جهتكم وألوانها، مع طاولة وكراسي وشاشة عرض وإضاءة واتصال بالإنترنت." },
+              { q: "كم عدد الطلاب المتوقع حضورهم؟", a: "نتوقع حضور أكثر من 3000 طالب وطالبة من مختلف جامعات الرياض خلال اليومين، وجميعهم مهتمون بالحصول على فرصة تدريب تعاوني في القطاع المالي والتقني." },
+              { q: "ما التخصصات الأكثر حضوراً في المعرض؟", a: "يستهدف المعرض طلاب علوم الحاسب، إدارة الأعمال، المالية والمصرفية، الهندسة، تصميم UX، إدارة البيانات، الموارد البشرية، وتخصصات أخرى ذات صلة بالقطاع المالي والتقني." },
+              { q: "ما الموعد النهائي للتسجيل؟", a: "يُفضل التسجيل قبل شهر من الفعالية لضمان تجهيز البوث (إن اخترتم البوث المقدَّم) وإدراج شعاركم في جميع المواد المطبوعة والرقمية." },
+              { q: "هل يمكننا الاستقطاب المباشر وجمع السير الذاتية في المعرض؟", a: "نعم بالتأكيد — هذا هو الهدف الأساسي من مشاركتكم. يمكن لفريقكم التحدث مع الطلاب، تقييمهم، وجمع ملفاتهم مباشرةً خلال اليومين." },
+              { q: "هل يمكننا إجراء مقابلات أو اختبارات داخل الجناح؟", a: "نعم، يمكنكم إجراء محادثات تقييمية مبدئية في جناحكم. لإجراء مقابلات رسمية فيُفضَّل التنسيق مسبقاً مع الفريق المنظم لتوفير مكان مناسب." },
             ].map((faq, i) => (
               <div key={i} className={`faq-item${faqOpen === i ? " open" : ""}`}>
                 <div className="faq-q" onClick={() => setFaqOpen(faqOpen === i ? null : i)}>
@@ -530,16 +527,16 @@ export default function Home() {
         <div className="wrap">
           <Reveal>
             <div style={{ textAlign: "center" }}>
-              <div className="lbl lt" style={{ justifyContent: "center" }}>مضمون لجميع الشركاء</div>
-              <h2 className="h2 wt" style={{ textAlign: "center" }}>كل الجهات تحصل على <em>هذا</em></h2>
+              <div className="lbl lt" style={{ justifyContent: "center" }}>مضمون لجميع الجهات</div>
+              <h2 className="h2 wt" style={{ textAlign: "center" }}>كل جهة مشاركة تحصل على <em>هذا</em></h2>
             </div>
           </Reveal>
           <div className="sum-grid">
             {[
               { i: "📣", t: "إعلان في كل منشور", d: "اسمك ولقبك الرسمي في كل إعلان قبل وخلال وبعد الفعالية" },
-              { i: "🌐", t: "إعلان على الموقع الرسمي", d: "ظهور ثابت على الموقع الرسمي للمعرض بلقبك طوال فترة الفعالية" },
-              { i: "🖼️", t: "الشعار في المواد", d: "شعار الجهة في البوسترات والدعوات والمطبوعات وشاشات الفعالية" },
-              { i: "🏆", t: "درع وتكريم رسمي", d: "تسليم رسمي في حفل الختام أمام الحضور وتوثيق ونشر على المنصات" },
+              { i: "🌐", t: "ظهور على الموقع الرسمي", d: "ظهور ثابت على الموقع الرسمي للمعرض طوال فترة الفعالية" },
+              { i: "🖼️", t: "الشعار في جميع المواد", d: "شعار جهتك في البوسترات والدعوات والمطبوعات والشاشات" },
+              { i: "🏆", t: "درع وتكريم رسمي", d: "تسليم رسمي في حفل الختام أمام الحضور مع توثيق ونشر" },
             ].map(s => (
               <Reveal key={s.t} className="sc">
                 <div className="sc-i">{s.i}</div>
@@ -556,9 +553,9 @@ export default function Home() {
         <div className="wrap">
           <div className="ct-grid">
             <Reveal>
-              <div className="lbl lt">تواصل معنا</div>
-              <h2 className="h2 wt">احجز مقعدك<br />كـ<em>شريك تدريب</em> الآن</h2>
-              <p className="ct-sub">المقاعد محدودة وتُخصَّص بحسب الأولوية. يمكنك التواصل المباشر أو تعبئة النموذج.</p>
+              <div className="lbl lt">سجّل جهتك</div>
+              <h2 className="h2 wt">احجز مقعدك<br />في المعرض <em>الآن</em></h2>
+              <p className="ct-sub">الأماكن محدودة وتُخصَّص بحسب الأولوية. سجّل الآن لضمان مشاركة جهتك.</p>
               <div className="ct-cards">
                 <div className="ccard"><div className="cc-ico">📧</div><div><div className="cc-lbl">البريد الإلكتروني</div><div className="cc-val"><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div></div></div>
                 <div className="ccard"><div className="cc-ico">📞</div><div><div className="cc-lbl">قائد العلاقات العامة</div><div className="cc-val"><a href="tel:+966534831944" style={{ color: "var(--glt)" }}>0534831944</a></div></div></div>
@@ -569,26 +566,43 @@ export default function Home() {
 
             <Reveal delay={100}>
               <div className="form-box">
-                <div className="form-ttl">أرسل طلب المشاركة</div>
-                <div className="fg"><label>اسم الجهة / الشركة <span style={{ color: "#f87171" }}>*</span></label><input type="text" placeholder="اسم المؤسسة" value={form.org} onChange={e => setF("org", e.target.value)} /></div>
-                <div className="fg"><label>اسم المسؤول <span style={{ color: "#f87171" }}>*</span></label><input type="text" placeholder="الاسم الكامل" value={form.name} onChange={e => setF("name", e.target.value)} /></div>
-                <div className="fg"><label>رقم الجوال / واتساب</label><input type="tel" placeholder="05xxxxxxxx" style={{ direction: "ltr" }} value={form.phone} onChange={e => setF("phone", e.target.value)} /></div>
-                <div className="fg"><label>البريد الإلكتروني <span style={{ color: "#f87171" }}>*</span></label><input type="email" placeholder="your@email.com" style={{ direction: "ltr" }} value={form.email} onChange={e => setF("email", e.target.value)} /></div>
+                <div className="form-ttl">نموذج تسجيل الجهة التدريبية</div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 12px" }}>
+                  <div className="fg"><label>اسم الجهة <span style={{ color: "#f87171" }}>*</span></label><input type="text" placeholder="اسم المؤسسة" value={form.org} onChange={e => setF("org", e.target.value)} /></div>
+                  <div className="fg"><label>اسم المسؤول <span style={{ color: "#f87171" }}>*</span></label><input type="text" placeholder="الاسم الكامل" value={form.name} onChange={e => setF("name", e.target.value)} /></div>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 12px" }}>
+                  <div className="fg"><label>رقم الجوال / واتساب</label><input type="tel" placeholder="05xxxxxxxx" style={{ direction: "ltr" }} value={form.phone} onChange={e => setF("phone", e.target.value)} /></div>
+                  <div className="fg"><label>البريد الإلكتروني <span style={{ color: "#f87171" }}>*</span></label><input type="email" placeholder="your@email.com" style={{ direction: "ltr" }} value={form.email} onChange={e => setF("email", e.target.value)} /></div>
+                </div>
+
                 <div className="fg">
-                  <label>نوع المشاركة <span style={{ color: "#f87171" }}>*</span></label>
-                  <select value={form.type} onChange={e => setF("type", e.target.value)}>
-                    <option value="">اختر نوع المشاركة</option>
-                    <option>شريك تدريب استراتيجي — 12,000 ريال</option>
-                    <option>شريك تدريب ذهبي — 6,000 ريال</option>
-                    <option>شريك أكاديمي (عيني)</option>
-                    <option>شريك مطبوعات (عيني)</option>
-                    <option>شريك ضيافة (عيني)</option>
-                    <option>شريك إعلامي (عيني)</option>
-                    <option>شريك تشغيلي (عيني)</option>
-                    <option>شريك النجاح / هدايا (عيني)</option>
-                    <option>جهة تدريب مشاركة (مجاني)</option>
+                  <label>قطاع الجهة</label>
+                  <select value={form.sector} onChange={e => setF("sector", e.target.value)}>
+                    <option value="">اختر القطاع</option>
+                    <option>مصرفي وتمويل</option>
+                    <option>تقنية مالية (فنتك)</option>
+                    <option>تقنية المعلومات</option>
+                    <option>استشارات ومحاسبة</option>
+                    <option>حكومي وتنظيمي</option>
+                    <option>تأمين وإدارة مخاطر</option>
+                    <option>أخرى</option>
                   </select>
                 </div>
+
+                <div className="fg">
+                  <label>العدد المتوقع للمتدربين سنوياً</label>
+                  <select value={form.count} onChange={e => setF("count", e.target.value)}>
+                    <option value="">حدّد العدد التقريبي</option>
+                    <option>1–5 متدربين</option>
+                    <option>6–15 متدرباً</option>
+                    <option>16–30 متدرباً</option>
+                    <option>أكثر من 30</option>
+                  </select>
+                </div>
+
                 <div className="fg">
                   <label>خيار البوث</label>
                   <div className="booth-opts">
@@ -596,9 +610,11 @@ export default function Home() {
                     <div className={`booth-opt${boothChoice === "provided" ? " active" : ""}`} onClick={() => setBoothChoice("provided")}>✨ أريد بوثاً مقدَّماً</div>
                   </div>
                 </div>
-                <div className="fg"><label>ملاحظات</label><textarea placeholder="أي تفاصيل إضافية..." value={form.notes} onChange={e => setF("notes", e.target.value)} /></div>
+
+                <div className="fg"><label>ملاحظات أو متطلبات خاصة</label><textarea placeholder="أي تفاصيل إضافية عن برنامج التدريب لديكم..." value={form.notes} onChange={e => setF("notes", e.target.value)} /></div>
+
                 <div style={{ background: "rgba(61,170,134,.08)", border: "1px solid rgba(61,170,134,.15)", borderRadius: 8, padding: "12px 14px", marginBottom: 12, textAlign: "center" }}>
-                  <p style={{ fontSize: ".74rem", color: "rgba(255,255,255,.55)", lineHeight: 1.7 }}>✓ يُرسَل الطلب مباشرة إلى البريد الرسمي للمعرض · يتواصل معك الفريق خلال 24 ساعة</p>
+                  <p style={{ fontSize: ".74rem", color: "rgba(255,255,255,.55)", lineHeight: 1.7, margin: 0 }}>✓ يُرسَل الطلب مباشرة إلى البريد الرسمي للمعرض · يتواصل معك الفريق خلال 24 ساعة</p>
                 </div>
                 {btnErr && <p style={{ color: "#f87171", fontSize: ".78rem", marginBottom: 8, textAlign: "center" }}>{btnErr}</p>}
                 <button className="form-btn" onClick={submitForm} disabled={sending}>{sending ? "جاري الإرسال..." : "إرسال طلب المشاركة"}</button>
