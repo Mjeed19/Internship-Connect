@@ -106,6 +106,13 @@ export default function Home() {
         <div className="h-scroll"><div className="scroll-line"/></div>
       </section>
 
+      {/* VENUE PHOTO */}
+      <div className="venue-strip">
+        <img src="/venue.webp" alt="بهو جامعة الإمام محمد بن سعود الإسلامية" className="venue-img"/>
+        <div className="venue-overlay"/>
+        <div className="venue-caption">بهو جامعة الإمام محمد بن سعود الإسلامية · الرياض</div>
+      </div>
+
       {/* STATS STRIP */}
       <div className="stats-strip">
         {[
