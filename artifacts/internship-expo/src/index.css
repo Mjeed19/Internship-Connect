@@ -140,6 +140,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-i
 .n-brand { font-family:'Cairo',sans-serif; font-size:1.05rem; font-weight:800; color:rgba(255,255,255,.9); }
 .n-brand-accent { color:var(--glt); }
 .n-sub { font-size:.6rem; color:rgba(255,255,255,.28); margin-top:1px; }
+.n-sponsor { font-size:.52rem; color:rgba(61,170,134,.5); margin-top:2px; letter-spacing:.3px; font-family:'Cairo',sans-serif; }
 .n-links { display:flex; gap:20px; list-style:none; margin:0; padding:0; }
 .n-links a { color:rgba(255,255,255,.48); text-decoration:none; font-size:.82rem; font-weight:500; transition:color .2s; }
 .n-links a:hover { color:#fff; }
