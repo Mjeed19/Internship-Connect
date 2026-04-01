@@ -93,13 +93,12 @@ export default function Home() {
             <span className="sub">معرض</span>
             <span className="grad-text">روافد فنتك</span>
           </h1>
-          <p className="h-tagline animate-fu-2">المنصة الأولى للتدريب التعاوني في التقنية المالية بالرياض</p>
-          <div className="h-date animate-fu-3">
+          <div className="h-date animate-fu-2">
             <div className="hd"><div className="hd-v">5–6 مايو 2026</div><div className="hd-l">التاريخ</div></div>
             <div className="hd"><div className="hd-v">12:00 – 8:30 م</div><div className="hd-l">الوقت</div></div>
             <div className="hd"><div className="hd-v">بهو جامعة الإمام</div><div className="hd-l">الرياض</div></div>
           </div>
-          <div className="h-btns animate-fu-4">
+          <div className="h-btns animate-fu-3">
             <a href="#contact" className="btn-p">سجّل جهتك — مجاناً</a>
             <a href="#meeting" className="btn-s">احجز اجتماعاً</a>
           </div>
