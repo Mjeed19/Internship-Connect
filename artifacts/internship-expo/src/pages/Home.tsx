@@ -72,7 +72,6 @@ export default function Home() {
         ))}
         <div className="h-glow"/>
         <div className="h-content">
-          <div className="h-pill animate-fu"><span className="dot-live"/>معرض التدريب التعاوني · 2026</div>
           <h1 className="h-title animate-fu-1">
             <span className="sub">معرض</span>
             <span className="grad-text">روافد فنتك</span>
