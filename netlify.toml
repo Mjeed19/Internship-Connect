@@ -1,0 +1,9 @@
+[build]
+  base    = "artifacts/internship-expo"
+  command = "pnpm install && pnpm vite build --config vite.netlify.config.ts"
+  publish = "artifacts/internship-expo/dist"
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
