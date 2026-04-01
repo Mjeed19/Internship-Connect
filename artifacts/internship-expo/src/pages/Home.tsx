@@ -38,7 +38,25 @@ const ORGS_ROW2 = [
   { n: "PwC", c: "#E0301E" }, { n: "Fintech Saudi", c: "#007A53" },
 ];
 
+function useCountdown() {
+  const target = new Date('2026-05-05T09:00:00Z').getTime();
+  const calc = () => {
+    const diff = target - Date.now();
+    if (diff <= 0) return { d: 0, h: 0, m: 0, s: 0 };
+    return {
+      d: Math.floor(diff / 86400000),
+      h: Math.floor((diff % 86400000) / 3600000),
+      m: Math.floor((diff % 3600000) / 60000),
+      s: Math.floor((diff % 60000) / 1000),
+    };
+  };
+  const [t, setT] = useState(calc);
+  useEffect(() => { const id = setInterval(() => setT(calc()), 1000); return () => clearInterval(id); }, []);
+  return t;
+}
+
 export default function Home() {
+  const cd = useCountdown();
   const [faq, setFaq] = useState<number | null>(null);
   const [booth, setBooth] = useState<"" | "own" | "provided">("");
   const [f, setF] = useState({ org: "", name: "", phone: "", email: "", notes: "" });
@@ -98,7 +116,15 @@ export default function Home() {
             <div className="hd"><div className="hd-v">12:00 – 8:30 م</div><div className="hd-l">الوقت</div></div>
             <div className="hd"><div className="hd-v">بهو جامعة الإمام</div><div className="hd-l">الرياض</div></div>
           </div>
-          <div className="h-btns animate-fu-3">
+          <div className="h-countdown animate-fu-3">
+            {[{v:cd.d,l:"يوم"},{v:cd.h,l:"ساعة"},{v:cd.m,l:"دقيقة"},{v:cd.s,l:"ثانية"}].map(({v,l})=>(
+              <div key={l} className="hcd-item">
+                <div className="hcd-n">{String(v).padStart(2,"0")}</div>
+                <div className="hcd-l">{l}</div>
+              </div>
+            ))}
+          </div>
+          <div className="h-btns animate-fu-4">
             <a href="#contact" className="btn-p">سجّل جهتك — مجاناً</a>
             <a href="#meeting" className="btn-s">احجز اجتماعاً</a>
           </div>
@@ -108,9 +134,17 @@ export default function Home() {
 
       {/* VENUE PHOTO */}
       <div className="venue-strip">
-        <img src="/venue.webp" alt="بهو جامعة الإمام محمد بن سعود الإسلامية" className="venue-img"/>
-        <div className="venue-overlay"/>
-        <div className="venue-caption">بهو جامعة الإمام محمد بن سعود الإسلامية · الرياض</div>
+        <div className="wrap">
+          <Rev>
+            <div className="venue-frame">
+              <div className="venue-img-wrap">
+                <img src="/venue.webp" alt="بهو جامعة الإمام" className="venue-img"/>
+                <div className="venue-overlay"/>
+                <div className="venue-pill">📍 بهو جامعة الإمام محمد بن سعود الإسلامية · الرياض</div>
+              </div>
+            </div>
+          </Rev>
+        </div>
       </div>
 
       {/* STATS STRIP */}
