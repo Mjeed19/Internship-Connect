@@ -6,7 +6,7 @@ const EMAIL = "pr.technationclub@gmail.com";
 const FORMSPREE = "https://formspree.io/f/mnndorva";
 
 const SVGWa = () => (
-  <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: "#fff", flexShrink: 0 }}>
+  <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: "currentColor", flexShrink: 0 }}>
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
   </svg>
 );
@@ -15,20 +15,25 @@ function Rev({ children, cls = "", ms = 0 }: { children: React.ReactNode; cls?: 
   const r = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = r.current; if (!el) return;
-    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setTimeout(() => el.classList.add("visible"), ms); }, { threshold: .05, rootMargin: "0px 0px -10px 0px" });
+    const o = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) setTimeout(() => el.classList.add("visible"), ms);
+    }, { threshold: .05, rootMargin: "0px 0px -40px 0px" });
     o.observe(el); return () => o.disconnect();
   }, [ms]);
   return <div ref={r} className={`reveal-sec ${cls}`}>{children}</div>;
 }
 
-const ORGS = [
-  { n: "البنك المركزي", c: "#00703c" }, { n: "SDAIA", c: "#1B4F9A" },
+const ORGS_ROW1 = [
+  { n: "البنك المركزي السعودي", c: "#00703c" }, { n: "SDAIA", c: "#1B4F9A" },
   { n: "وزارة الاستثمار", c: "#006837" }, { n: "فنتك السعودية", c: "#007A53" },
   { n: "الأكاديمية المالية", c: "#1E3A5F" }, { n: "STC Bank", c: "#6A1F7A" },
   { n: "بنك الإنماء", c: "#004B8D" }, { n: "بنك الرياض", c: "#003087" },
+];
+const ORGS_ROW2 = [
   { n: "SIDF", c: "#00843D" }, { n: "تمارا", c: "#D4521A" },
-  { n: "Tabby", c: "#0F9B8E" }, { n: "Barq", c: "#4A4A5A" },
-  { n: "Urpay", c: "#6B3FA0" }, { n: "EY", c: "#B8960C" }, { n: "PwC", c: "#E0301E" },
+  { n: "Tabby", c: "#0F9B8E" }, { n: "Barq", c: "#4A5568" },
+  { n: "Urpay", c: "#6B3FA0" }, { n: "EY", c: "#B8960C" },
+  { n: "PwC", c: "#E0301E" }, { n: "Fintech Saudi", c: "#007A53" },
 ];
 
 export default function Home() {
@@ -74,21 +79,19 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero">
-        <img src="/hero-bg.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", zIndex:0, opacity:.15, pointerEvents:"none" }} />
+        <img src="/hero-bg.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", zIndex:0, opacity:.12, pointerEvents:"none" }} />
         <div className="h-mesh"/><div className="h-grid-bg"/><div className="orb-a"/><div className="orb-b"/>
         {(["tl","tr","bl","br"] as const).map(c => (
           <div key={c} className={`h-corner ${c}`}><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M42 0H0V42" stroke="#3DAA86" strokeWidth="1.4"/><circle cx="0" cy="0" r="3" fill="#3DAA86"/></svg></div>
         ))}
         <div className="h-glow"/>
         <div className="h-content">
+          <div className="h-live animate-fu"><span className="dot-live"/> مسجّل الآن</div>
           <h1 className="h-title animate-fu-1">
             <span className="sub">معرض</span>
             <span className="grad-text">روافد فنتك</span>
           </h1>
-          <div className="h-nums animate-fu-2">
-            <div className="hn"><div className="hn-n">+3000</div><div className="hn-l">طالب يزور المعرض</div></div>
-            <div className="hn"><div className="hn-n">يومان</div><div className="hn-l">تواجد كامل</div></div>
-          </div>
+          <p className="h-tagline animate-fu-2">المنصة الأولى للتدريب التعاوني في التقنية المالية بالرياض</p>
           <div className="h-date animate-fu-3">
             <div className="hd"><div className="hd-v">5–6 مايو 2026</div><div className="hd-l">التاريخ</div></div>
             <div className="hd"><div className="hd-v">12:00 – 8:30 م</div><div className="hd-l">الوقت</div></div>
@@ -102,26 +105,41 @@ export default function Home() {
         <div className="h-scroll"><div className="scroll-line"/></div>
       </section>
 
-      {/* WHY — editorial numbered layout */}
-      <section className="sec sec-light" id="why">
+      {/* STATS STRIP */}
+      <div className="stats-strip">
+        {[
+          { n: "+3000", l: "طالب وطالبة" },
+          { n: "يومان", l: "تواجد كامل" },
+          { n: "+20", l: "جهة تدريب" },
+          { n: "مجاني", l: "للجهات التدريبية" },
+        ].map((s, i) => (
+          <div key={i} className="stat-item">
+            <div className="stat-n">{s.n}</div>
+            <div className="stat-l">{s.l}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* WHY — dark cards with watermark numbers */}
+      <section className="why-dark" id="why">
         <div className="wrap">
           <Rev>
-            <div className="why-label">لماذا تشارك؟</div>
+            <div className="sec-eyebrow">لماذا تشارك؟</div>
+            <h2 className="h2 wt" style={{ marginBottom: 40 }}>ما الذي <em>تكسبه</em> مؤسستك؟</h2>
           </Rev>
-          <div className="why-ed">
+          <div className="why-cards">
             {[
-              { n: "01", i: "🎯", t: "استقطاب المتدربين مباشرة", d: "أكثر من 3000 طالب وطالبة يبحثون عن فرصة تدريب في موقع واحد." },
-              { n: "02", i: "📣", t: "حضور إعلامي على مدار أسابيع", d: "ذكرك في جميع المنشورات الرسمية قبل الفعالية وخلالها وبعدها." },
-              { n: "03", i: "🏆", t: "تكريم رسمي وتغطية موثَّقة", d: "درع وصور وريلز باسم جهتك تُستخدم في موادكم الإعلامية." },
+              { num: "01", icon: "🎯", t: "استقطاب المتدربين مباشرة", d: "أكثر من 3000 طالب يبحثون عن فرصة تدريب — في مكان واحد، يومين متتاليين." },
+              { num: "02", icon: "📣", t: "حضور إعلامي لأسابيع", d: "ذكرك في كل منشور رسمي قبل الفعالية وخلالها وبعدها مع ريلز باسمك." },
+              { num: "03", icon: "🏆", t: "تكريم وتغطية موثَّقة", d: "درع رسمي وصور وتقرير بعد الفعالية لتوثيق مشاركة جهتك." },
             ].map((w, i) => (
-              <Rev key={w.n} ms={i * 80}>
-                <div className="we-item">
-                  <div className="we-num">{w.n}</div>
-                  <div className="we-body">
-                    <div className="we-icon">{w.i}</div>
-                    <div className="we-title">{w.t}</div>
-                    <div className="we-desc">{w.d}</div>
-                  </div>
+              <Rev key={w.num} ms={i * 90}>
+                <div className="why-card" data-num={w.num}>
+                  <div className="wcard-num">{w.num}</div>
+                  <div className="wcard-icon">{w.icon}</div>
+                  <div className="wcard-title">{w.t}</div>
+                  <div className="wcard-desc">{w.d}</div>
+                  <div className="wcard-line"/>
                 </div>
               </Rev>
             ))}
@@ -130,54 +148,53 @@ export default function Home() {
       </section>
 
       {/* BOOTH */}
-      <section className="sec sec-tinted" id="booth">
+      <section className="booth-sec" id="booth">
         <div className="wrap">
           <Rev>
-            <div style={{ textAlign:"center", marginBottom:36 }}>
-              <div className="why-label" style={{ justifyContent:"center" }}>خيارات البوث</div>
-              <h2 className="h2" style={{ textAlign:"center" }}>اختر طريقة <em>تواجدك</em> — كلاهما مجاني</h2>
+            <div style={{ textAlign:"center", marginBottom:40 }}>
+              <div className="sec-eyebrow" style={{ justifyContent:"center" }}>خيارات البوث</div>
+              <h2 className="h2 wt" style={{ textAlign:"center" }}>اختر طريقة <em>تواجدك</em></h2>
+              <p style={{ color:"rgba(255,255,255,.38)", fontSize:".82rem", marginTop:6 }}>كلا الخيارين مجاني تماماً</p>
             </div>
           </Rev>
           <div className="booth-grid">
             {[
               {
-                cls: "plat", hdr: "linear-gradient(135deg,#1B6B52,#2A8A6A)", icon: "🏗️",
-                name: "البوث الخاص", sub: "Bring Your Own Booth",
-                desc: "أحضر تصميمك الكامل — نوفر المساحة والخدمات.",
-                items: ["مساحة مخصصة بأبعاد متفق عليها", "طاقة كهربائية وخدمات كاملة", "لوحات في خريطة المعرض", "ذكر في المواد الرسمية"],
-                tag: "الأنسب للجهات ذات الهوية البصرية المميزة"
+                icon: "🏗️", name: "البوث الخاص", sub: "Bring Your Own Booth",
+                hdr: "linear-gradient(135deg,#13503D,#1B6B52)",
+                desc: "أحضر تصميمك وهويتك البصرية — نوفر لك المساحة والخدمات الكاملة.",
+                items: ["مساحة مخصصة بأبعاد متفق عليها","طاقة كهربائية وخدمات كاملة","لوحات في خريطة المعرض","ذكر في جميع المواد الرسمية"],
+                ac: "#1B6B52", tag: "للجهات ذات الهوية البصرية المميزة"
               },
               {
-                cls: "inkind", hdr: "linear-gradient(135deg,#0D7D6C,#1A9E8A)", icon: "✨",
-                name: "البوث المقدَّم", sub: "Provided — جاهز بالكامل",
-                desc: "ركّز على المتدربين — نتكفّل بكل التجهيزات.",
-                items: ["بوث بشعارك وألوانك الرسمية", "طاولة وكراسي وشاشة 55\"", "إنترنت مخصص وإضاءة LED", "فريق دعم طوال اليومين"],
-                tag: "الأنسب للجهات التي تريد راحة لوجستية تامة"
+                icon: "✨", name: "البوث المقدَّم", sub: "Provided — جاهز بالكامل",
+                hdr: "linear-gradient(135deg,#0A5C4F,#0D7D6C)",
+                desc: "ركّز على استقطاب المتدربين — نتكفّل بكل التجهيزات بشعارك وألوانك.",
+                items: ["بوث احترافي بشعارك وألوانك","طاولة وكراسي وشاشة 55\"","إنترنت مخصص وإضاءة LED","فريق دعم طوال اليومين"],
+                ac: "#0D7D6C", tag: "للجهات التي تريد راحة لوجستية تامة"
               }
             ].map((b, i) => (
-              <Rev key={b.name} ms={i * 100}>
-                <div className={`pkg2 ${b.cls}`}>
-                  <div className="pkg2-header" style={{ background: b.hdr }}>
-                    <div className="pkg2-top">
+              <Rev key={b.name} ms={i * 110}>
+                <div className="bcard">
+                  <div className="bcard-hdr" style={{ background: b.hdr }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:10 }}>
                       <div>
-                        <div className="pkg2-name">{b.name}</div>
-                        <div className="pkg2-sub">{b.sub}</div>
+                        <div className="bcard-name">{b.name}</div>
+                        <div className="bcard-sub">{b.sub}</div>
                       </div>
-                      <div style={{ fontSize:"2.2rem" }}>{b.icon}</div>
+                      <div style={{ fontSize:"2rem", lineHeight:1 }}>{b.icon}</div>
                     </div>
-                    <div style={{ fontSize:".78rem", color:"rgba(255,255,255,.65)", marginTop:8 }}>{b.desc}</div>
+                    <p className="bcard-desc">{b.desc}</p>
                   </div>
-                  <div className="pkg2-body">
-                    <div className="pkg2-list">
-                      {b.items.map(m => (
-                        <div key={m} className="pkg2-item">
-                          <div className="pkg2-check" style={{ background: b.cls === "plat" ? "var(--green)" : "var(--teal)" }}>✓</div>
-                          <div className="pkg2-item-main">{m}</div>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="bcard-body">
+                    {b.items.map(m => (
+                      <div key={m} className="bcard-item">
+                        <div className="bcard-check" style={{ background: b.ac }}>✓</div>
+                        <span>{m}</span>
+                      </div>
+                    ))}
+                    <div className="bcard-tag">{b.tag}</div>
                   </div>
-                  <div className="pkg2-footer"><div className={`pkg2-tagline ${b.cls}`}>{b.tag}</div></div>
                 </div>
               </Rev>
             ))}
@@ -185,34 +202,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ORGS — animated ticker */}
-      <section className="sec sec-light" id="orgs">
+      {/* ORGS — animated double ticker */}
+      <section className="orgs-sec" id="orgs">
         <div className="wrap">
           <Rev>
-            <div style={{ textAlign:"center", marginBottom:32 }}>
-              <div className="why-label" style={{ justifyContent:"center" }}>الجهات المتوقعة</div>
+            <div style={{ textAlign:"center", marginBottom:36 }}>
+              <div className="sec-eyebrow dk" style={{ justifyContent:"center" }}>الجهات المتوقعة</div>
               <h2 className="h2" style={{ textAlign:"center" }}>ستكون جانب <em>هؤلاء</em></h2>
             </div>
           </Rev>
         </div>
-        {/* Row 1 — scrolls right→left */}
         <div className="ticker-wrap">
           <div className="ticker-track fwd">
-            {[...ORGS, ...ORGS].map((o, i) => (
+            {[...ORGS_ROW1, ...ORGS_ROW1].map((o, i) => (
               <div key={i} className="ticker-pill">
-                <div className="ticker-dot" style={{ background: o.c }} />
-                <span>{o.n}</span>
+                <div className="ticker-dot" style={{ background: o.c }}/><span>{o.n}</span>
               </div>
             ))}
           </div>
         </div>
-        {/* Row 2 — scrolls left→right (reversed) */}
-        <div className="ticker-wrap" style={{ marginTop: 10 }}>
+        <div className="ticker-wrap" style={{ marginTop:10 }}>
           <div className="ticker-track rev">
-            {[...ORGS.slice().reverse(), ...ORGS.slice().reverse()].map((o, i) => (
+            {[...ORGS_ROW2, ...ORGS_ROW2].map((o, i) => (
               <div key={i} className="ticker-pill">
-                <div className="ticker-dot" style={{ background: o.c }} />
-                <span>{o.n}</span>
+                <div className="ticker-dot" style={{ background: o.c }}/><span>{o.n}</span>
               </div>
             ))}
           </div>
@@ -224,34 +237,39 @@ export default function Home() {
         <div className="wrap">
           <Rev>
             <div style={{ textAlign:"center", marginBottom:8 }}>
-              <div className="why-label" style={{ justifyContent:"center" }}>أسئلة شائعة</div>
+              <div className="sec-eyebrow dk" style={{ justifyContent:"center" }}>أسئلة شائعة</div>
               <h2 className="h2" style={{ textAlign:"center" }}>ما يسألنا عنه <em>الجهات</em></h2>
             </div>
           </Rev>
-          <div className="faq-list" style={{ maxWidth:760, margin:"0 auto" }}>
-            {[
-              { q: "هل المشاركة مجانية تماماً؟", a: "نعم — سواء البوث الخاص أو البوث المقدَّم المُجهَّز بشعارك." },
-              { q: "ما الفرق بين البوثين؟", a: "البوث الخاص: تُحضر تصميمك ونوفر المساحة. البوث المقدَّم: نُجهَّزه بشعارك وألوانك مع طاولة وشاشة وإنترنت." },
-              { q: "من الجمهور المتوقع؟", a: "أكثر من 3000 طالب وطالبة من جامعات الرياض يبحثون عن فرص تدريب تعاوني في التقنية المالية." },
-              { q: "ما الموعد النهائي للتسجيل؟", a: "يُفضل التسجيل قبل شهر لضمان إدراج شعارك في جميع المواد وتجهيز البوث." },
-            ].map((q, i) => (
-              <div key={i} className={`faq-item${faq === i ? " open" : ""}`}>
-                <div className="faq-q" onClick={() => setFaq(faq === i ? null : i)}>{q.q}<span className="faq-icon">+</span></div>
-                <div className="faq-a">{q.a}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Meeting inline strip */}
-          <Rev ms={60}>
-            <div id="meeting" style={{ maxWidth:760, margin:"28px auto 0", display:"flex", alignItems:"center", justifyContent:"space-between", gap:14, background:"rgba(27,107,82,.07)", border:"1px solid rgba(61,170,134,.16)", borderRadius:12, padding:"16px 20px", flexWrap:"wrap" }}>
-              <div>
-                <div style={{ fontFamily:"'Cairo',sans-serif", fontWeight:800, fontSize:".9rem", color:"var(--ink)" }}>تريد مناقشة التفاصيل أولاً؟</div>
-                <div style={{ fontSize:".72rem", color:"var(--muted-c)", marginTop:3 }}>30 دقيقة زووم أو حضورياً — نشرح كل شيء قبل تسجيلك</div>
-              </div>
-              <a href={WA_MTG} target="_blank" rel="noreferrer" className="btn-wa" style={{ fontSize:".8rem", padding:"9px 16px" }}><SVGWa/>احجز عبر واتساب</a>
+          <div style={{ maxWidth:760, margin:"0 auto" }}>
+            <div className="faq-list">
+              {[
+                { q: "هل المشاركة مجانية تماماً؟", a: "نعم — سواء البوث الخاص أو البوث المقدَّم المُجهَّز بشعارك وألوانك." },
+                { q: "ما الفرق بين البوثين؟", a: "البوث الخاص: تُحضر تصميمك الكامل ونوفر المساحة والخدمات. البوث المقدَّم: نُجهَّزه بشعارك وألوانك مع طاولة وشاشة وإنترنت وإضاءة." },
+                { q: "من الجمهور المتوقع؟", a: "أكثر من 3000 طالب وطالبة من جامعات الرياض يبحثون عن فرص تدريب تعاوني في التقنية المالية." },
+                { q: "ما الموعد النهائي للتسجيل؟", a: "يُفضل التسجيل قبل شهر من الفعالية لضمان إدراج شعارك في جميع المواد وتجهيز البوث." },
+              ].map((q, i) => (
+                <div key={i} className={`faq-item${faq === i ? " open" : ""}`}>
+                  <div className="faq-q" onClick={() => setFaq(faq === i ? null : i)}>{q.q}<span className="faq-icon">+</span></div>
+                  <div className="faq-a">{q.a}</div>
+                </div>
+              ))}
             </div>
-          </Rev>
+
+            {/* Meeting strip */}
+            <Rev ms={60}>
+              <div id="meeting" className="mtg-strip">
+                <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+                  <div className="mtg-icon">📅</div>
+                  <div>
+                    <div className="mtg-title">تريد مناقشة التفاصيل أولاً؟</div>
+                    <div className="mtg-sub">30 دقيقة زووم أو حضورياً — نشرح كل شيء قبل تسجيلك</div>
+                  </div>
+                </div>
+                <a href={WA_MTG} target="_blank" rel="noreferrer" className="btn-wa-sm"><SVGWa/>احجز عبر واتساب</a>
+              </div>
+            </Rev>
+          </div>
         </div>
       </section>
 
@@ -260,8 +278,8 @@ export default function Home() {
         <div className="wrap">
           <div className="ct-grid">
             <Rev>
-              <div className="lbl lt">تواصل معنا</div>
-              <h2 className="h2 wt">سجّل جهتك<br/>كـ<em>جهة تدريب</em> الآن</h2>
+              <div className="lbl lt">سجّل الآن</div>
+              <h2 className="h2 wt" style={{ marginBottom:8 }}>سجّل جهتك<br/>كـ<em>جهة تدريب</em></h2>
               <p className="ct-sub">الأماكن محدودة وتُخصَّص بحسب الأولوية.</p>
               <div className="ct-cards">
                 <div className="ccard"><div className="cc-ico">📧</div><div><div className="cc-lbl">البريد</div><div className="cc-val"><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div></div></div>
@@ -272,45 +290,41 @@ export default function Home() {
             </Rev>
 
             <Rev ms={100}>
-              <div className="form-box" style={{ background:"rgba(255,255,255,.03)", border:"1px solid rgba(61,170,134,.15)", borderRadius:20, padding:"28px 24px" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:22 }}>
-                  <div style={{ width:40, height:40, background:"linear-gradient(135deg,#1B6B52,#3DAA86)", borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.2rem", flexShrink:0 }}>🎓</div>
+              <div className="form-box">
+                <div className="form-hdr">
+                  <div className="form-hdr-dot"/>
                   <div>
-                    <div style={{ fontFamily:"'Cairo',sans-serif", fontSize:".95rem", fontWeight:900, color:"#fff", lineHeight:1.2 }}>سجّل جهتك الآن</div>
-                    <div style={{ fontSize:".68rem", color:"rgba(255,255,255,.35)", marginTop:2 }}>مجاني · الفريق يتواصل خلال 24 ساعة</div>
+                    <div style={{ fontFamily:"'Cairo',sans-serif", fontSize:".95rem", fontWeight:900, color:"#fff" }}>سجّل جهتك الآن</div>
+                    <div style={{ fontSize:".68rem", color:"rgba(255,255,255,.3)", marginTop:2 }}>مجاني · الفريق يتواصل خلال 24 ساعة</div>
                   </div>
                 </div>
-
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 12px" }}>
-                  <div className="fg"><label>🏢 اسم الجهة <span style={{ color:"#f87171" }}>*</span></label><input type="text" placeholder="اسم المؤسسة" value={f.org} onChange={e => upd("org",e.target.value)}/></div>
-                  <div className="fg"><label>👤 اسم المسؤول <span style={{ color:"#f87171" }}>*</span></label><input type="text" placeholder="الاسم الكامل" value={f.name} onChange={e => upd("name",e.target.value)}/></div>
+                  <div className="fg"><label>اسم الجهة <span style={{ color:"#f87171" }}>*</span></label><input type="text" placeholder="اسم المؤسسة" value={f.org} onChange={e => upd("org",e.target.value)}/></div>
+                  <div className="fg"><label>اسم المسؤول <span style={{ color:"#f87171" }}>*</span></label><input type="text" placeholder="الاسم الكامل" value={f.name} onChange={e => upd("name",e.target.value)}/></div>
                 </div>
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 12px" }}>
-                  <div className="fg"><label>📞 الجوال</label><input type="tel" placeholder="05xxxxxxxx" style={{ direction:"ltr" }} value={f.phone} onChange={e => upd("phone",e.target.value)}/></div>
-                  <div className="fg"><label>📧 البريد <span style={{ color:"#f87171" }}>*</span></label><input type="email" placeholder="your@email.com" style={{ direction:"ltr" }} value={f.email} onChange={e => upd("email",e.target.value)}/></div>
+                  <div className="fg"><label>الجوال / واتساب</label><input type="tel" placeholder="05xxxxxxxx" style={{ direction:"ltr" }} value={f.phone} onChange={e => upd("phone",e.target.value)}/></div>
+                  <div className="fg"><label>البريد الإلكتروني <span style={{ color:"#f87171" }}>*</span></label><input type="email" placeholder="your@email.com" style={{ direction:"ltr" }} value={f.email} onChange={e => upd("email",e.target.value)}/></div>
                 </div>
-
                 <div style={{ marginBottom:14 }}>
-                  <label style={{ display:"block", fontSize:".68rem", color:"rgba(255,255,255,.34)", marginBottom:8, fontWeight:700 }}>🏗️ كيف تريد تواجدك؟</label>
+                  <label style={{ display:"block", fontSize:".68rem", color:"rgba(255,255,255,.34)", marginBottom:8, fontWeight:700 }}>خيار البوث</label>
                   <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
                     {([
                       { k:"own", icon:"🏗️", t:"بوثي الخاص", d:"أحضر تصميمي" },
                       { k:"provided", icon:"✨", t:"بوث مقدَّم", d:"مجهَّز بهويتي" },
                     ] as const).map(opt => (
-                      <div key={opt.k} onClick={() => setBooth(opt.k)}
-                        style={{ cursor:"pointer", padding:"12px 10px", borderRadius:10, border:`2px solid ${booth===opt.k?"#3DAA86":"rgba(255,255,255,.09)"}`, background:booth===opt.k?"rgba(61,170,134,.1)":"rgba(255,255,255,.02)", transition:"all .2s", textAlign:"center" }}>
+                      <div key={opt.k} onClick={() => setBooth(opt.k)} className={`booth-choice${booth===opt.k ? " active":""}`}>
                         <div style={{ fontSize:"1.3rem", marginBottom:3 }}>{opt.icon}</div>
-                        <div style={{ fontFamily:"'Cairo',sans-serif", fontSize:".82rem", fontWeight:800, color:booth===opt.k?"#3DAA86":"#fff" }}>{opt.t}</div>
-                        <div style={{ fontSize:".64rem", color:"rgba(255,255,255,.35)", marginTop:1 }}>{opt.d}</div>
+                        <div style={{ fontFamily:"'Cairo',sans-serif", fontSize:".82rem", fontWeight:800 }}>{opt.t}</div>
+                        <div style={{ fontSize:".63rem", opacity:.5, marginTop:1 }}>{opt.d}</div>
                       </div>
                     ))}
                   </div>
                 </div>
-
-                <div className="fg"><label>💬 ملاحظات (اختياري)</label><textarea placeholder="أي تفاصيل إضافية..." value={f.notes} onChange={e => upd("notes",e.target.value)} style={{ minHeight:52 }}/></div>
+                <div className="fg"><label>ملاحظات (اختياري)</label><textarea placeholder="أي تفاصيل إضافية..." value={f.notes} onChange={e => upd("notes",e.target.value)} style={{ minHeight:52 }}/></div>
                 {err && <p style={{ color:"#f87171", fontSize:".76rem", marginBottom:8, textAlign:"center" }}>{err}</p>}
-                <button className="form-btn" onClick={send} disabled={busy} style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
-                  {busy ? "جاري الإرسال…" : <><span>إرسال الطلب</span><span style={{ opacity:.5, fontSize:".78rem" }}>← مجاناً</span></>}
+                <button className="form-btn" onClick={send} disabled={busy}>
+                  {busy ? "جاري الإرسال…" : "إرسال الطلب — مجاناً"}
                 </button>
               </div>
             </Rev>
@@ -321,11 +335,11 @@ export default function Home() {
       {/* THANK YOU */}
       <div className={`ty-overlay${done ? " open" : ""}`}>
         <div className="ty-box">
-          <div style={{ fontSize:"2.5rem", marginBottom:14 }}>🎉</div>
+          <div style={{ fontSize:"2.4rem", marginBottom:12 }}>🎉</div>
           <h3 style={{ fontFamily:"'Cairo',sans-serif", fontSize:"1.3rem", fontWeight:900, color:"#fff", marginBottom:8 }}>تم إرسال طلبك!</h3>
-          <p style={{ fontSize:".84rem", color:"rgba(255,255,255,.5)", lineHeight:1.8, marginBottom:20 }}>سيتواصل معك الفريق خلال 24 ساعة.</p>
-          <a href={WA} target="_blank" rel="noreferrer" className="btn-wa" style={{ display:"inline-flex", margin:"0 auto 12px" }}><SVGWa/>تواصل عبر واتساب</a><br/>
-          <button onClick={() => setDone(false)} style={{ background:"transparent", border:"1px solid rgba(255,255,255,.14)", color:"rgba(255,255,255,.45)", padding:"7px 18px", borderRadius:7, cursor:"pointer", fontFamily:"'Tajawal',sans-serif", fontSize:".82rem" }}>إغلاق</button>
+          <p style={{ fontSize:".84rem", color:"rgba(255,255,255,.48)", lineHeight:1.8, marginBottom:22 }}>سيتواصل معك الفريق خلال 24 ساعة.</p>
+          <a href={WA} target="_blank" rel="noreferrer" className="btn-p" style={{ display:"inline-flex", alignItems:"center", gap:8, textDecoration:"none", marginBottom:12 }}><SVGWa/>تواصل عبر واتساب</a><br/>
+          <button onClick={() => setDone(false)} style={{ background:"transparent", border:"1px solid rgba(255,255,255,.12)", color:"rgba(255,255,255,.4)", padding:"7px 18px", borderRadius:7, cursor:"pointer", fontFamily:"'Tajawal',sans-serif", fontSize:".82rem" }}>إغلاق</button>
         </div>
       </div>
 
@@ -334,7 +348,7 @@ export default function Home() {
         <div className="fi">
           <div className="fb">روافد فنتك <span>التدريب التعاوني · 2026</span></div>
           <div className="fc">© 2026 جميع الحقوق محفوظة</div>
-          <div><div className="fo-n">جامعة الإمام محمد بن سعود الإسلامية</div><div className="fo-s">نادي TechNation · نادي المالية الطلابي</div></div>
+          <div style={{ textAlign:"left" }}><div className="fo-n">جامعة الإمام محمد بن سعود الإسلامية</div><div className="fo-s">نادي TechNation · نادي المالية الطلابي</div></div>
         </div>
       </footer>
 
