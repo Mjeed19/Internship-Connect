@@ -178,17 +178,33 @@ nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-i
 .h-scroll { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); z-index:4; }
 .scroll-line { width:1px; height:30px; background:linear-gradient(to bottom,rgba(61,170,134,.65),transparent); animation:sl 2s ease-in-out infinite; margin:0 auto; }
 
-/* ═══ VENUE STRIP ═══ */
-.venue-strip { position:relative; width:100%; height:380px; overflow:hidden; }
-.venue-img { width:100%; height:100%; object-fit:cover; object-position:center 28%; display:block; }
-.venue-overlay {
-  position:absolute; inset:0;
-  background:
-    linear-gradient(to bottom, var(--green4) 0%, transparent 18%, transparent 78%, var(--green4) 100%),
-    linear-gradient(to right, rgba(5,14,8,.35) 0%, transparent 20%, transparent 80%, rgba(5,14,8,.35) 100%);
-}
-.venue-tag { position:absolute; top:20px; right:clamp(16px,4vw,52px); background:rgba(61,170,134,.12); backdrop-filter:blur(10px); border:1px solid rgba(61,170,134,.28); border-radius:100px; padding:5px 12px; font-size:.65rem; color:var(--glt); font-family:'Cairo',sans-serif; font-weight:700; letter-spacing:1px; }
-.venue-caption { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-size:.62rem; color:rgba(255,255,255,.28); letter-spacing:2.5px; white-space:nowrap; font-family:'Cairo',sans-serif; font-weight:600; text-align:center; }
+/* ═══ VENUE SECTION ═══ */
+.venue-sec { background:var(--green4); padding:80px clamp(16px,4vw,60px); overflow:hidden; }
+.venue-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1100px; margin:0 auto; }
+@media(max-width:760px){ .venue-grid { grid-template-columns:1fr; } }
+
+.venue-img-frame { position:relative; border-radius:16px; overflow:hidden; aspect-ratio:4/3; box-shadow:0 32px 80px rgba(0,0,0,.6); }
+.venue-photo { width:100%; height:100%; object-fit:cover; object-position:center 28%; display:block; }
+.venue-img-grad { position:absolute; inset:0; background:linear-gradient(135deg, rgba(5,14,8,.3) 0%, transparent 50%, rgba(5,14,8,.45) 100%); }
+.venue-coord { position:absolute; bottom:12px; left:12px; font-size:.58rem; color:rgba(255,255,255,.35); letter-spacing:1.5px; font-family:monospace; background:rgba(5,14,8,.5); backdrop-filter:blur(8px); padding:4px 9px; border-radius:4px; }
+.venue-img-corner { position:absolute; width:18px; height:18px; }
+.venue-img-corner.tl { top:10px; right:10px; border-top:2px solid var(--glt); border-right:2px solid var(--glt); }
+.venue-img-corner.tr { top:10px; left:10px; border-top:2px solid var(--glt); border-left:2px solid var(--glt); }
+.venue-img-corner.bl { bottom:10px; right:10px; border-bottom:2px solid var(--glt); border-right:2px solid var(--glt); }
+.venue-img-corner.br { bottom:10px; left:10px; border-bottom:2px solid var(--glt); border-left:2px solid var(--glt); }
+
+.venue-info-col { display:flex; flex-direction:column; gap:0; }
+.venue-eyebrow { font-size:.68rem; color:var(--glt); font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; font-family:'Cairo',sans-serif; }
+.venue-title { font-family:'Cairo',sans-serif; font-size:clamp(1.5rem,3vw,2.4rem); font-weight:900; color:#fff; line-height:1.25; margin:0 0 20px; }
+.venue-title span { color:rgba(255,255,255,.5); font-weight:700; }
+.venue-divider { width:48px; height:2px; background:linear-gradient(90deg,var(--glt),transparent); margin-bottom:24px; border-radius:2px; }
+.venue-meta-row { display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+.venue-meta-item { display:flex; align-items:center; gap:14px; }
+.venue-meta-icon { width:36px; height:36px; border-radius:9px; background:rgba(61,170,134,.1); border:1px solid rgba(61,170,134,.2); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.venue-meta-v { font-family:'Cairo',sans-serif; font-size:.9rem; font-weight:700; color:#fff; }
+.venue-meta-l { font-size:.62rem; color:rgba(255,255,255,.3); margin-top:1px; }
+.venue-map-btn { display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(61,170,134,.3); color:var(--glt); font-size:.76rem; font-weight:700; padding:9px 18px; border-radius:8px; text-decoration:none; transition:all .2s; background:rgba(61,170,134,.06); font-family:'Cairo',sans-serif; width:fit-content; }
+.venue-map-btn:hover { background:rgba(61,170,134,.14); border-color:rgba(61,170,134,.55); }
 
 /* ═══ COUNTDOWN ═══ */
 .h-countdown { display:flex; gap:6px; justify-content:center; margin-bottom:22px; }

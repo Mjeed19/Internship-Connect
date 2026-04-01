@@ -176,13 +176,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VENUE PHOTO */}
-      <div className="venue-strip">
-        <img src="/venue.webp" alt="بهو جامعة الإمام محمد بن سعود الإسلامية" className="venue-img"/>
-        <div className="venue-overlay"/>
-        <div className="venue-tag">📍 موقع الفعالية</div>
-        <div className="venue-caption">بهو جامعة الإمام محمد بن سعود الإسلامية · الرياض</div>
-      </div>
+      {/* VENUE SECTION */}
+      <section className="venue-sec">
+        <div className="venue-grid">
+          <div className="venue-img-col">
+            <div className="venue-img-frame">
+              <img src="/venue.webp" alt="بهو جامعة الإمام" className="venue-photo"/>
+              <div className="venue-img-grad"/>
+              <div className="venue-coord">24°41′N · 46°41′E</div>
+              <div className="venue-img-corner tl"/><div className="venue-img-corner tr"/>
+              <div className="venue-img-corner bl"/><div className="venue-img-corner br"/>
+            </div>
+          </div>
+          <Rev cls="venue-info-col">
+            <div className="venue-eyebrow">📍 موقع الفعالية</div>
+            <h2 className="venue-title">بهو جامعة الإمام<br/><span>محمد بن سعود الإسلامية</span></h2>
+            <div className="venue-divider"/>
+            <div className="venue-meta-row">
+              <div className="venue-meta-item">
+                <div className="venue-meta-icon">📅</div>
+                <div><div className="venue-meta-v">5 – 6 مايو 2026</div><div className="venue-meta-l">التاريخ</div></div>
+              </div>
+              <div className="venue-meta-item">
+                <div className="venue-meta-icon">⏰</div>
+                <div><div className="venue-meta-v">12:00 – 8:30 م</div><div className="venue-meta-l">الوقت</div></div>
+              </div>
+              <div className="venue-meta-item">
+                <div className="venue-meta-icon">🏙️</div>
+                <div><div className="venue-meta-v">الرياض</div><div className="venue-meta-l">المدينة</div></div>
+              </div>
+            </div>
+            <a href="https://maps.app.goo.gl/IMAM" target="_blank" rel="noreferrer" className="venue-map-btn">
+              عرض على الخريطة ↗
+            </a>
+          </Rev>
+        </div>
+      </section>
 
       {/* BOOTH */}
       <section className="booth-sec" id="booth">
