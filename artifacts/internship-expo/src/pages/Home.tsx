@@ -24,7 +24,7 @@ function Rev({ children, cls = "", ms = 0 }: { children: React.ReactNode; cls?: 
 export default function Home() {
   const [faq, setFaq] = useState<number | null>(null);
   const [booth, setBooth] = useState<"" | "own" | "provided">("");
-  const [f, setF] = useState({ org: "", name: "", phone: "", email: "", type: "", notes: "" });
+  const [f, setF] = useState({ org: "", name: "", phone: "", email: "", notes: "" });
   const upd = (k: string, v: string) => setF(p => ({ ...p, [k]: v }));
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
@@ -34,9 +34,9 @@ export default function Home() {
     if (!f.org || !f.name || !f.email) { setErr("يرجى تعبئة الحقول المطلوبة"); return; }
     setErr(""); setBusy(true);
     try {
-      const res = await fetch(FORMSPREE, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ الجهة: f.org, المسؤول: f.name, البريد: f.email, الجوال: f.phone, "نوع المشاركة": f.type, "خيار البوث": booth === "own" ? "بوث خاص" : booth === "provided" ? "بوث مقدَّم" : "لم يُحدَّد", ملاحظات: f.notes, _subject: `طلب مشاركة تدريب تعاوني — روافد فنتك 2026 — ${f.org}` }) });
+      const res = await fetch(FORMSPREE, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ الجهة: f.org, المسؤول: f.name, البريد: f.email, الجوال: f.phone, "خيار البوث": booth === "own" ? "بوث خاص" : booth === "provided" ? "بوث مقدَّم" : "لم يُحدَّد", ملاحظات: f.notes, _subject: `طلب مشاركة تدريب تعاوني — روافد فنتك 2026 — ${f.org}` }) });
       const d = await res.json();
-      if (d.ok || d.next) { setDone(true); setF({ org: "", name: "", phone: "", email: "", type: "", notes: "" }); setBooth(""); }
+      if (d.ok || d.next) { setDone(true); setF({ org: "", name: "", phone: "", email: "", notes: "" }); setBooth(""); }
       else setErr("حدث خطأ — تواصل عبر واتساب");
     } catch { setErr("تواصل عبر واتساب مباشرة"); }
     setBusy(false);
@@ -66,6 +66,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero">
+        <img src="/hero-bg.webp" alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", zIndex:0, opacity:.18, pointerEvents:"none" }} />
         <div className="h-mesh"/><div className="h-grid-bg"/><div className="orb-a"/><div className="orb-b"/>
         {[["tl","0 0H0V42"],["tr","0 0H0V42"],["bl","0 0H0V42"],["br","0 0H0V42"]].map(([c]) => (
           <div key={c} className={`h-corner ${c}`}><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M42 0H0V42" stroke="#3DAA86" strokeWidth="1.4"/><circle cx="0" cy="0" r="3" fill="#3DAA86"/></svg></div>
@@ -357,37 +358,67 @@ export default function Home() {
             </Rev>
 
             <Rev ms={100}>
-              <div className="form-box">
-                <div className="form-ttl">أرسل طلب المشاركة</div>
-                <div className="fg"><label>اسم الجهة / الشركة <span style={{ color: "#f87171" }}>*</span></label><input type="text" placeholder="اسم المؤسسة" value={f.org} onChange={e => upd("org", e.target.value)}/></div>
-                <div className="fg"><label>اسم المسؤول <span style={{ color: "#f87171" }}>*</span></label><input type="text" placeholder="الاسم الكامل" value={f.name} onChange={e => upd("name", e.target.value)}/></div>
-                <div className="fg"><label>رقم الجوال / واتساب</label><input type="tel" placeholder="05xxxxxxxx" style={{ direction: "ltr" }} value={f.phone} onChange={e => upd("phone", e.target.value)}/></div>
-                <div className="fg"><label>البريد الإلكتروني <span style={{ color: "#f87171" }}>*</span></label><input type="email" placeholder="your@email.com" style={{ direction: "ltr" }} value={f.email} onChange={e => upd("email", e.target.value)}/></div>
-                <div className="fg">
-                  <label>نوع المشاركة</label>
-                  <select value={f.type} onChange={e => upd("type", e.target.value)}>
-                    <option value="">اختر نوع المشاركة</option>
-                    <option>جهة تدريب مشاركة</option>
-                    <option>شريك أكاديمي (عيني)</option>
-                    <option>شريك إعلامي (عيني)</option>
-                    <option>شريك ضيافة (عيني)</option>
-                    <option>شريك مطبوعات (عيني)</option>
-                    <option>شريك تشغيلي (عيني)</option>
-                  </select>
-                </div>
-                <div className="fg">
-                  <label>خيار البوث</label>
-                  <div className="booth-opts">
-                    <div className={`booth-opt${booth === "own" ? " active" : ""}`} onClick={() => setBooth("own")}>🏗️ أحضر بوثي الخاص</div>
-                    <div className={`booth-opt${booth === "provided" ? " active" : ""}`} onClick={() => setBooth("provided")}>✨ أريد بوثاً مقدَّماً</div>
+              <div className="form-box" style={{ background: "rgba(255,255,255,.03)", border: "1px solid rgba(61,170,134,.15)", borderRadius: 20, padding: "32px 28px" }}>
+                {/* Header */}
+                <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:28 }}>
+                  <div style={{ width:44, height:44, background:"linear-gradient(135deg,#1B6B52,#3DAA86)", borderRadius:12, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.3rem", flexShrink:0 }}>🎓</div>
+                  <div>
+                    <div style={{ fontFamily:"'Cairo',sans-serif", fontSize:"1rem", fontWeight:900, color:"#fff", lineHeight:1.2 }}>سجّل جهتك الآن</div>
+                    <div style={{ fontSize:".7rem", color:"rgba(255,255,255,.35)", marginTop:2 }}>مجاني · يتواصل معك الفريق خلال 24 ساعة</div>
                   </div>
                 </div>
-                <div className="fg"><label>ملاحظات</label><textarea placeholder="أي تفاصيل إضافية..." value={f.notes} onChange={e => upd("notes", e.target.value)}/></div>
-                <div style={{ background: "rgba(61,170,134,.08)", border: "1px solid rgba(61,170,134,.15)", borderRadius: 8, padding: "12px 14px", marginBottom: 12, textAlign: "center" }}>
-                  <p style={{ fontSize: ".74rem", color: "rgba(255,255,255,.55)", lineHeight: 1.7, margin: 0 }}>✓ يُرسَل مباشرة إلى البريد الرسمي للمعرض · يتواصل معك الفريق خلال 24 ساعة</p>
+
+                {/* Inline inputs */}
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 12px" }}>
+                  <div className="fg">
+                    <label>🏢 اسم الجهة <span style={{ color:"#f87171" }}>*</span></label>
+                    <input type="text" placeholder="اسم المؤسسة" value={f.org} onChange={e => upd("org",e.target.value)}/>
+                  </div>
+                  <div className="fg">
+                    <label>👤 اسم المسؤول <span style={{ color:"#f87171" }}>*</span></label>
+                    <input type="text" placeholder="الاسم الكامل" value={f.name} onChange={e => upd("name",e.target.value)}/>
+                  </div>
                 </div>
-                {err && <p style={{ color: "#f87171", fontSize: ".78rem", marginBottom: 8, textAlign: "center" }}>{err}</p>}
-                <button className="form-btn" onClick={send} disabled={busy}>{busy ? "جاري الإرسال..." : "إرسال طلب المشاركة"}</button>
+
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 12px" }}>
+                  <div className="fg">
+                    <label>📞 الجوال / واتساب</label>
+                    <input type="tel" placeholder="05xxxxxxxx" style={{ direction:"ltr" }} value={f.phone} onChange={e => upd("phone",e.target.value)}/>
+                  </div>
+                  <div className="fg">
+                    <label>📧 البريد الإلكتروني <span style={{ color:"#f87171" }}>*</span></label>
+                    <input type="email" placeholder="your@email.com" style={{ direction:"ltr" }} value={f.email} onChange={e => upd("email",e.target.value)}/>
+                  </div>
+                </div>
+
+                {/* Booth choice — visual cards */}
+                <div style={{ marginBottom:16 }}>
+                  <label style={{ display:"block", fontSize:".7rem", color:"rgba(255,255,255,.34)", marginBottom:8, fontWeight:600 }}>🏗️ كيف تريد تواجدك؟</label>
+                  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+                    {([
+                      { k:"own", icon:"🏗️", t:"بوثي الخاص", d:"أحضر تصميمك" },
+                      { k:"provided", icon:"✨", t:"بوث مقدَّم", d:"مجهَّز بهويتك" },
+                    ] as const).map(opt => (
+                      <div key={opt.k} onClick={() => setBooth(opt.k)}
+                        style={{ cursor:"pointer", padding:"14px 12px", borderRadius:12, border:`2px solid ${booth===opt.k?"#3DAA86":"rgba(255,255,255,.1)"}`, background: booth===opt.k ? "rgba(61,170,134,.1)" : "rgba(255,255,255,.03)", transition:"all .22s", textAlign:"center" }}>
+                        <div style={{ fontSize:"1.4rem", marginBottom:4 }}>{opt.icon}</div>
+                        <div style={{ fontFamily:"'Cairo',sans-serif", fontSize:".85rem", fontWeight:800, color: booth===opt.k ? "#3DAA86":"#fff", lineHeight:1.2 }}>{opt.t}</div>
+                        <div style={{ fontSize:".68rem", color:"rgba(255,255,255,.38)", marginTop:2 }}>{opt.d}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="fg">
+                  <label>💬 ملاحظات (اختياري)</label>
+                  <textarea placeholder="أي تفاصيل تودّ مشاركتها..." value={f.notes} onChange={e => upd("notes",e.target.value)} style={{ minHeight:60 }}/>
+                </div>
+
+                {err && <p style={{ color:"#f87171", fontSize:".78rem", marginBottom:8, textAlign:"center" }}>{err}</p>}
+                <button className="form-btn" onClick={send} disabled={busy}
+                  style={{ marginTop:4, display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+                  {busy ? "جاري الإرسال…" : <><span>إرسال الطلب</span><span style={{ opacity:.6, fontSize:".82rem" }}>← مجاناً</span></>}
+                </button>
               </div>
             </Rev>
           </div>
