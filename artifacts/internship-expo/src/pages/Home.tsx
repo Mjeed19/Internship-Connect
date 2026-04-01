@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
 const WA = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%B1%D9%88%D8%A7%D9%81%D8%AF%20%D9%81%D9%86%D8%AA%D9%83%202026";
+const WA_OWN = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9%20%D8%A8%D8%A8%D9%88%D8%AB%20%D8%AE%D8%A7%D8%B5%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%B1%D9%88%D8%A7%D9%81%D8%AF%20%D9%81%D9%86%D8%AA%D9%83%202026";
+const WA_PRV = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9%20%D8%A8%D8%A8%D9%88%D8%AB%20%D9%85%D9%82%D8%AF%D9%91%D9%85%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%B1%D9%88%D8%A7%D9%81%D8%AF%20%D9%81%D9%86%D8%AA%D9%83%202026";
 const WA_MTG = "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8";
 const EMAIL = "pr.technationclub@gmail.com";
 const FORMSPREE = "https://formspree.io/f/mnndorva";
@@ -109,9 +111,9 @@ export default function Home() {
       <div className="stats-strip">
         {[
           { n: "+3000", l: "طالب وطالبة" },
-          { n: "يومان", l: "تواجد كامل" },
-          { n: "+20", l: "جهة تدريب" },
-          { n: "مجاني", l: "للجهات التدريبية" },
+          { n: "يومان", l: "تواجد مكثَّف" },
+          { n: "100٪", l: "مجاني للجهات" },
+          { n: "قاعدة", l: "بيانات المتدربين" },
         ].map((s, i) => (
           <div key={i} className="stat-item">
             <div className="stat-n">{s.n}</div>
@@ -125,13 +127,14 @@ export default function Home() {
         <div className="wrap">
           <Rev>
             <div className="sec-eyebrow">لماذا تشارك؟</div>
-            <h2 className="h2 wt" style={{ marginBottom: 40 }}>ما الذي <em>تكسبه</em> مؤسستك؟</h2>
+            <h2 className="h2 wt" style={{ marginBottom: 40 }}>ما الذي تُضيفه <em>مشاركتك</em> لجهتك؟</h2>
           </Rev>
-          <div className="why-cards">
+          <div className="why-cards why-cards-4">
             {[
-              { num: "01", icon: "🎯", t: "استقطاب المتدربين مباشرة", d: "أكثر من 3000 طالب يبحثون عن فرصة تدريب — في مكان واحد، يومين متتاليين." },
-              { num: "02", icon: "📣", t: "حضور إعلامي لأسابيع", d: "ذكرك في كل منشور رسمي قبل الفعالية وخلالها وبعدها مع ريلز باسمك." },
-              { num: "03", icon: "🏆", t: "تكريم وتغطية موثَّقة", d: "درع رسمي وصور وتقرير بعد الفعالية لتوثيق مشاركة جهتك." },
+              { num: "01", icon: "🎯", t: "وصول مباشر لمواهب المستقبل", d: "أكثر من 3000 طالب في قطاع التقنية المالية — اكتشف، قيّم، وتواصل مع أفضل المرشحين خلال يومين." },
+              { num: "02", icon: "🗄️", t: "قاعدة بيانات المتدربين", d: "تحصل جهتك على قاعدة بيانات شاملة بأسماء الطلاب واهتماماتهم وبياناتهم للتواصل المباشر بعد المعرض." },
+              { num: "03", icon: "📣", t: "حضور إعلامي قبل وبعد", d: "ذكر رسمي في جميع منصات المعرض، ريلز احترافي، وتقرير موثَّق — يبقى أثرك حياً بعد الفعالية." },
+              { num: "04", icon: "🏆", t: "تكريم وتوثيق رسمي", d: "درع تكريمي وحزمة صور احترافية وشهادة مشاركة رسمية لتوثيق حضور جهتك في تاريخ القطاع." },
             ].map((w, i) => (
               <Rev key={w.num} ms={i * 90}>
                 <div className="why-card" data-num={w.num}>
@@ -162,16 +165,16 @@ export default function Home() {
               {
                 icon: "🏗️", name: "البوث الخاص", sub: "Bring Your Own Booth",
                 hdr: "linear-gradient(135deg,#13503D,#1B6B52)",
-                desc: "أحضر تصميمك وهويتك البصرية — نوفر لك المساحة والخدمات الكاملة.",
-                items: ["مساحة مخصصة بأبعاد متفق عليها","طاقة كهربائية وخدمات كاملة","لوحات في خريطة المعرض","ذكر في جميع المواد الرسمية"],
-                ac: "#1B6B52", tag: "للجهات ذات الهوية البصرية المميزة"
+                desc: "أحضر هويتك البصرية الكاملة — نوفر لك المساحة والدعم اللوجستي من أول يوم.",
+                items: ["مساحة مخصصة بأبعاد متفق عليها","طاقة كهربائية وإنترنت مخصص","لوحات وإشارات في خريطة المعرض","ذكر رسمي في جميع المواد الإعلامية"],
+                ac: "#1B6B52", tag: "الأنسب للجهات ذات الهوية البصرية المميزة", wa: WA_OWN
               },
               {
-                icon: "✨", name: "البوث المقدَّم", sub: "Provided — جاهز بالكامل",
+                icon: "✨", name: "البوث المقدَّم", sub: "Fully Equipped — جاهز بالكامل",
                 hdr: "linear-gradient(135deg,#0A5C4F,#0D7D6C)",
-                desc: "ركّز على استقطاب المتدربين — نتكفّل بكل التجهيزات بشعارك وألوانك.",
-                items: ["بوث احترافي بشعارك وألوانك","طاولة وكراسي وشاشة 55\"","إنترنت مخصص وإضاءة LED","فريق دعم طوال اليومين"],
-                ac: "#0D7D6C", tag: "للجهات التي تريد راحة لوجستية تامة"
+                desc: "ركّز على المتدربين — نبني بوثك الاحترافي بشعارك وألوانك بالكامل، أنت لا تحمل شيئاً.",
+                items: ["بوث احترافي بشعارك وألوانك","طاولة وكراسي وشاشة 55\"","إنترنت مخصص وإضاءة LED","فريق دعم متواصل خلال اليومين"],
+                ac: "#0D7D6C", tag: "الأنسب للجهات التي تريد راحة لوجستية تامة", wa: WA_PRV
               }
             ].map((b, i) => (
               <Rev key={b.name} ms={i * 110}>
@@ -194,6 +197,9 @@ export default function Home() {
                       </div>
                     ))}
                     <div className="bcard-tag">{b.tag}</div>
+                    <a href={b.wa} target="_blank" rel="noreferrer" className="bcard-wa">
+                      <SVGWa/>أريد هذا البوث — تواصل عبر واتساب
+                    </a>
                   </div>
                 </div>
               </Rev>
@@ -207,8 +213,9 @@ export default function Home() {
         <div className="wrap">
           <Rev>
             <div style={{ textAlign:"center", marginBottom:36 }}>
-              <div className="sec-eyebrow dk" style={{ justifyContent:"center" }}>الجهات المتوقعة</div>
-              <h2 className="h2" style={{ textAlign:"center" }}>ستكون جانب <em>هؤلاء</em></h2>
+              <div className="sec-eyebrow dk" style={{ justifyContent:"center" }}>الجهات المشاركة</div>
+              <h2 className="h2" style={{ textAlign:"center" }}>في حضرة <em>قادة الصناعة</em></h2>
+              <p style={{ color:"var(--muted-c)", fontSize:".84rem", marginTop:6, textAlign:"center" }}>يُقيّم الطلاب مساركم مقارنةً بمن بجانبكم — اختر حضورك بعناية</p>
             </div>
           </Rev>
         </div>
