@@ -86,7 +86,6 @@ export default function Home() {
           <div>
             <div className="n-brand">معرض <span className="n-brand-accent">روافد فنتك</span></div>
             <div className="n-sub">التدريب التعاوني · 2026</div>
-            <div className="n-sponsor">برعاية جامعة الإمام محمد بن سعود الإسلامية</div>
           </div>
         </div>
         <ul className="n-links">
@@ -112,6 +111,7 @@ export default function Home() {
             <span className="sub">معرض</span>
             <span className="grad-text">روافد فنتك</span>
           </h1>
+          <div className="h-sponsor animate-fu-1">برعاية جامعة الإمام محمد بن سعود الإسلامية</div>
           <div className="h-date animate-fu-2">
             <div className="hd"><div className="hd-v">5–6 مايو 2026</div><div className="hd-l">التاريخ</div></div>
             <div className="hd"><div className="hd-v">12:00 – 8:30 م</div><div className="hd-l">الوقت</div></div>
