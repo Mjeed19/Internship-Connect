@@ -58,7 +58,6 @@ export default function Home() {
           <li><a href="#booth">خيارات البوث</a></li>
           <li><a href="#orgs">الجهات</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#meeting" className="n-cta">احجز اجتماعاً</a></li>
         </ul>
         <a href="#contact" className="n-btn">سجّل جهتك</a>
       </nav>
@@ -79,7 +78,6 @@ export default function Home() {
           <div className="h-nums animate-fu-2">
             <div className="hn"><div className="hn-n">+3000</div><div className="hn-l">طالب يزور المعرض</div></div>
             <div className="hn"><div className="hn-n">يومان</div><div className="hn-l">تواجد كامل</div></div>
-            <div className="hn"><div className="hn-n">+20</div><div className="hn-l">جهة مشاركة</div></div>
           </div>
           <div className="h-date animate-fu-3">
             <div className="hd"><div className="hd-v">5–6 مايو 2026</div><div className="hd-l">التاريخ</div></div>
@@ -233,61 +231,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FEATURES */}
-      <section className="features-sec">
-        <div className="wrap">
-          <Rev>
-            <div style={{ textAlign: "center" }}>
-              <div className="lbl lt" style={{ justifyContent: "center" }}>مزايا المشاركة</div>
-              <h2 className="h2 wt" style={{ textAlign: "center" }}>ماذا <em>تحصل</em> كجهة تدريب؟</h2>
-            </div>
-          </Rev>
-          <div className="feat-grid" style={{ gridTemplateColumns: "repeat(5,1fr)" }}>
-            {[
-              { n: "01", i: "📣", t: "إعلان في كل منشور", d: "ذكرك في كل منشور رسمي قبل الفعالية وبعدها" },
-              { n: "02", i: "🌐", t: "ظهور على الموقع", d: "شعارك وبيانات برنامجك على الموقع الرسمي" },
-              { n: "03", i: "🎓", t: "استقطاب المتدربين", d: "وصول مباشر لأكثر من 3000 طالب" },
-              { n: "04", i: "📸", t: "تغطية مصورة", d: "صور ومقاطع لجناحك للاستخدام الإعلامي" },
-              { n: "05", i: "🏆", t: "درع تكريمي", d: "تسليم رسمي على المسرح في حفل الختام" },
-              { n: "06", i: "📊", t: "تقرير بعد الفعالية", d: "إحصائيات الحضور والتفاعل" },
-              { n: "07", i: "📱", t: "ريلز باسمك", d: "مقطع قصير يُنشر على حسابات المعرض" },
-              { n: "08", i: "🤝", t: "شبكة علاقات", d: "لقاء بجهات القطاع المالي والتقني" },
-              { n: "09", i: "🏷️", t: 'ختم "شريك رسمي"', d: "شارة رقمية لاستخدامها في موادك" },
-              { n: "10", i: "🎯", t: "إدراج في الكتيّب", d: "صفحة خاصة بجهتك في الكتيّب الرسمي" },
-            ].map((x, i) => (
-              <Rev key={x.n} ms={i * 40}>
-                <div className="feat-card">
-                  <span className="feat-num">{x.n}</span>
-                  <span className="feat-icon">{x.i}</span>
-                  <div className="feat-title">{x.t}</div>
-                  <div className="feat-desc">{x.d}</div>
-                </div>
-              </Rev>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* MEETING */}
-      <section className="meeting-sec" id="meeting">
-        <div className="meeting-inner">
-          <Rev>
-            <div className="meeting-badge">📅 احجز اجتماع التدريب</div>
-            <h2 className="meeting-title">نناقش التفاصيل معك<br/><em>في اجتماع مخصص</em></h2>
-            <p className="meeting-desc">لا تكتفِ بالنموذج — نسعد بتخصيص 30 دقيقة نشرح فيها آليات التنفيذ، نجيب على أسئلتك، ونناقش أفضل خيار يناسب مؤسستك.</p>
-            <div className="meeting-cards">
-              <div className="meeting-card"><div className="mc-icon">⏱️</div><div><div className="mc-t">30 دقيقة</div><div className="mc-d">زووم أو حضورياً</div></div></div>
-              <div className="meeting-card"><div className="mc-icon">📋</div><div><div className="mc-t">شرح تفصيلي</div><div className="mc-d">آليات التنفيذ والمواعيد</div></div></div>
-              <div className="meeting-card"><div className="mc-icon">✏️</div><div><div className="mc-t">تخصيص</div><div className="mc-d">نناقش متطلباتك الخاصة</div></div></div>
-            </div>
-            <div className="meeting-btns">
-              <a className="btn-wa" href={WA_MTG} target="_blank" rel="noreferrer"><SVGWa/>احجز عبر واتساب</a>
-              <a className="btn-mail" href={`mailto:${EMAIL}`}>📧 {EMAIL}</a>
-            </div>
-          </Rev>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="sec sec-light" id="faq">
         <div className="wrap">
@@ -311,32 +254,20 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* SUMMARY */}
-      <section className="sec sec-dark">
-        <div className="wrap">
-          <Rev>
-            <div style={{ textAlign: "center" }}>
-              <div className="lbl lt" style={{ justifyContent: "center" }}>مضمون لجميع الجهات</div>
-              <h2 className="h2 wt" style={{ textAlign: "center" }}>كل جهة تحصل على <em>هذا</em></h2>
+          {/* MEETING — compact inline strip */}
+          <Rev ms={80}>
+            <div id="meeting" style={{ maxWidth: 780, margin: "32px auto 0", background: "linear-gradient(120deg,rgba(27,107,82,.18),rgba(13,125,108,.12))", border: "1px solid rgba(61,170,134,.2)", borderRadius: 14, padding: "18px 22px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{ fontSize: "1.5rem" }}>📅</div>
+                <div>
+                  <div style={{ fontFamily: "'Cairo',sans-serif", fontWeight: 800, fontSize: ".95rem", color: "#fff" }}>تريد مناقشة التفاصيل أولاً؟</div>
+                  <div style={{ fontSize: ".72rem", color: "rgba(255,255,255,.45)", marginTop: 2 }}>30 دقيقة زووم أو حضورياً — نشرح كل شيء قبل تسجيلك</div>
+                </div>
+              </div>
+              <a href={WA_MTG} target="_blank" rel="noreferrer" className="btn-wa" style={{ fontSize: ".82rem", padding: "10px 18px", flexShrink: 0 }}><SVGWa/>احجز عبر واتساب</a>
             </div>
           </Rev>
-          <div className="sum-grid">
-            {[
-              { i: "📣", t: "إعلان في كل منشور", d: "اسمك في كل إعلان قبل وخلال وبعد الفعالية" },
-              { i: "🌐", t: "ظهور على الموقع الرسمي", d: "ظهور ثابت على الموقع الرسمي للمعرض" },
-              { i: "🖼️", t: "الشعار في جميع المواد", d: "البوسترات والدعوات والمطبوعات والشاشات" },
-              { i: "🏆", t: "درع وتكريم رسمي", d: "تسليم في حفل الختام أمام الحضور مع توثيق ونشر" },
-            ].map(s => (
-              <Rev key={s.t} cls="sc">
-                <div className="sc-i">{s.i}</div>
-                <div className="sc-t">{s.t}</div>
-                <div className="sc-d">{s.d}</div>
-              </Rev>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -367,7 +298,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Inline inputs */}
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 12px" }}>
                   <div className="fg">
                     <label>🏢 اسم الجهة <span style={{ color:"#f87171" }}>*</span></label>
@@ -390,7 +320,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Booth choice — visual cards */}
                 <div style={{ marginBottom:16 }}>
                   <label style={{ display:"block", fontSize:".7rem", color:"rgba(255,255,255,.34)", marginBottom:8, fontWeight:600 }}>🏗️ كيف تريد تواجدك؟</label>
                   <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
