@@ -48,7 +48,6 @@ export default function Home() {
       {/* NAV */}
       <nav>
         <div className="n-logo">
-          <div className="n-icon">🎓</div>
           <div>
             <div className="n-brand">معرض <span className="n-brand-accent">روافد فنتك</span></div>
             <div className="n-sub">التدريب التعاوني · 2026</div>
