@@ -134,17 +134,10 @@ export default function Home() {
 
       {/* VENUE PHOTO */}
       <div className="venue-strip">
-        <div className="wrap">
-          <Rev>
-            <div className="venue-frame">
-              <div className="venue-img-wrap">
-                <img src="/venue.webp" alt="بهو جامعة الإمام" className="venue-img"/>
-                <div className="venue-overlay"/>
-                <div className="venue-pill">📍 بهو جامعة الإمام محمد بن سعود الإسلامية · الرياض</div>
-              </div>
-            </div>
-          </Rev>
-        </div>
+        <img src="/venue.webp" alt="بهو جامعة الإمام محمد بن سعود الإسلامية" className="venue-img"/>
+        <div className="venue-overlay"/>
+        <div className="venue-tag">📍 موقع الفعالية</div>
+        <div className="venue-caption">بهو جامعة الإمام محمد بن سعود الإسلامية · الرياض</div>
       </div>
 
       {/* STATS STRIP */}

@@ -178,12 +178,17 @@ nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-i
 .scroll-line { width:1px; height:30px; background:linear-gradient(to bottom,rgba(61,170,134,.65),transparent); animation:sl 2s ease-in-out infinite; margin:0 auto; }
 
 /* ═══ VENUE STRIP ═══ */
-.venue-strip { background:var(--green4); padding:40px 0 60px; }
-.venue-frame { max-width:880px; margin:0 auto; }
-.venue-img-wrap { position:relative; border-radius:18px; overflow:hidden; border:1px solid rgba(61,170,134,.16); box-shadow:0 24px 70px rgba(0,0,0,.65), 0 0 0 1px rgba(61,170,134,.06); aspect-ratio:16/8; }
-.venue-img { width:100%; height:100%; object-fit:cover; object-position:center 28%; display:block; }
-.venue-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(5,14,8,.08) 0%, transparent 35%, transparent 65%, rgba(5,14,8,.35) 100%); }
-.venue-pill { position:absolute; bottom:14px; right:16px; background:rgba(5,14,8,.75); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:100px; padding:7px 14px; font-size:.7rem; color:rgba(255,255,255,.55); display:flex; align-items:center; gap:5px; font-family:'Cairo',sans-serif; font-weight:600; }
+.venue-strip { position:relative; width:100%; height:460px; overflow:hidden; }
+.venue-img { width:100%; height:100%; object-fit:cover; object-position:center 28%; display:block; transition:transform 8s ease; }
+.venue-strip:hover .venue-img { transform:scale(1.04); }
+.venue-overlay {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom, var(--green4) 0%, transparent 22%, transparent 72%, var(--green4) 100%),
+    linear-gradient(to right, rgba(5,14,8,.4) 0%, transparent 40%, transparent 60%, rgba(5,14,8,.4) 100%);
+}
+.venue-tag { position:absolute; top:28px; right:clamp(16px,4vw,52px); background:rgba(61,170,134,.12); backdrop-filter:blur(10px); border:1px solid rgba(61,170,134,.28); border-radius:100px; padding:6px 14px; font-size:.68rem; color:var(--glt); font-family:'Cairo',sans-serif; font-weight:700; letter-spacing:1px; }
+.venue-caption { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-size:.65rem; color:rgba(255,255,255,.3); letter-spacing:2.5px; white-space:nowrap; font-family:'Cairo',sans-serif; font-weight:600; text-transform:uppercase; text-align:center; }
 
 /* ═══ COUNTDOWN ═══ */
 .h-countdown { display:flex; gap:6px; justify-content:center; margin-bottom:22px; }
