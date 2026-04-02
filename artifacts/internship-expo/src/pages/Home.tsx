@@ -82,7 +82,7 @@ function VisitorCounter() {
     <div className="vc-badge">
       <div className="vc-dot" />
       <span className="vc-txt">زيارة</span>
-      <span className="vc-num">{count.toLocaleString("ar-EG")}</span>
+      <span className="vc-num">{count.toLocaleString("en-US")}</span>
     </div>
   );
 }

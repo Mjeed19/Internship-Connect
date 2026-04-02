@@ -461,7 +461,7 @@ fetch('https://api.counterapi.dev/v1/rawafid-fintech-2026/visitors/up')
   .then(function(r){return r.json()})
   .then(function(d){
     var n=Number(d.count);
-    document.getElementById('vc-num').textContent=n.toLocaleString('ar-EG');
+    document.getElementById('vc-num').textContent=n.toLocaleString('en-US');
     document.getElementById('vc-badge').style.display='flex';
   })
   .catch(function(){});
