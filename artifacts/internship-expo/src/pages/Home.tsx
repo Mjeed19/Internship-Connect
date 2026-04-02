@@ -234,7 +234,15 @@ export default function Home() {
               <div className="hd-l">الرياض</div>
             </div>
           </div>
-          <div className="h-countdown animate-fu-3">
+          <div className="h-btns animate-fu-3">
+            <a href="#contact" className="btn-p">
+              سجّل جهتك — مجاناً
+            </a>
+            <a href="#meeting" className="btn-s">
+              احجز اجتماعاً
+            </a>
+          </div>
+          <div className="h-countdown h-countdown-sm animate-fu-4">
             {[
               { v: cd.d, l: "يوم" },
               { v: cd.h, l: "ساعة" },
@@ -246,14 +254,6 @@ export default function Home() {
                 <div className="hcd-l">{l}</div>
               </div>
             ))}
-          </div>
-          <div className="h-btns animate-fu-4">
-            <a href="#contact" className="btn-p">
-              سجّل جهتك — مجاناً
-            </a>
-            <a href="#meeting" className="btn-s">
-              احجز اجتماعاً
-            </a>
           </div>
         </div>
         <div className="h-scroll">
