@@ -199,11 +199,12 @@ export default function Home() {
         <div className="h-grid-bg" />
         <div className="orb-a" />
         <div className="orb-b" />
+        <div className="orb-c" />
         {(["tl", "tr", "bl", "br"] as const).map((c) => (
           <div key={c} className={`h-corner ${c}`}>
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
-              <path d="M42 0H0V42" stroke="#3DAA86" strokeWidth="1.4" />
-              <circle cx="0" cy="0" r="3" fill="#3DAA86" />
+              <path d="M42 0H0V42" stroke="#2DB876" strokeWidth="1.4" />
+              <circle cx="0" cy="0" r="3" fill="#2DB876" />
             </svg>
           </div>
         ))}
