@@ -69,6 +69,24 @@ const ORGS_ROW2 = [
   { n: "Fintech Saudi", c: "#007A53" },
 ];
 
+function VisitorCounter() {
+  const [count, setCount] = useState<number | null>(null);
+  useEffect(() => {
+    fetch("https://api.counterapi.dev/v1/rawafid-fintech-2026/visitors/up")
+      .then((r) => r.json())
+      .then((d) => setCount(Number(d.count)))
+      .catch(() => {});
+  }, []);
+  if (count === null) return null;
+  return (
+    <div className="vc-badge">
+      <div className="vc-dot" />
+      <span className="vc-txt">زيارة</span>
+      <span className="vc-num">{count.toLocaleString("ar-EG")}</span>
+    </div>
+  );
+}
+
 function useCountdown() {
   const target = new Date("2026-05-05T09:00:00Z").getTime();
   const calc = () => {
@@ -622,6 +640,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* VISITOR COUNTER */}
+      <VisitorCounter />
 
       {/* WA FIXED */}
       <a
