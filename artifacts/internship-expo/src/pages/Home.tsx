@@ -374,14 +374,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <a
-              href="https://maps.app.goo.gl/IMAM"
-              target="_blank"
-              rel="noreferrer"
-              className="venue-map-btn"
-            >
-              عرض على الخريطة ↗
-            </a>
           </Rev>
         </div>
       </section>
