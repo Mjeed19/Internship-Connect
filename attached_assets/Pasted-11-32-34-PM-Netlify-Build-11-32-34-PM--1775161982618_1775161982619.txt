@@ -1,0 +1,61 @@
+11:32:34 PM: Netlify Build                                                 
+11:32:34 PM: ────────────────────────────────────────────────────────────────
+11:32:34 PM: ​
+11:32:34 PM: ❯ Version
+11:32:34 PM:   @netlify/build 35.11.2
+11:32:34 PM: ​
+11:32:34 PM: ❯ Flags
+11:32:34 PM:   accountId: 69b89e115514d6d9093b5986
+11:32:34 PM:   baseRelDir: true
+11:32:34 PM:   buildId: 69ced25bfd842c58b417024c
+11:32:34 PM:   deployId: 69ced25bfd842c58b417024e
+11:32:34 PM:   packagePath: artifacts/internship-expo
+11:32:34 PM: ​
+11:32:34 PM: ❯ Current directory
+11:32:34 PM:   /opt/build/repo/site
+11:32:34 PM: ​
+11:32:34 PM: ❯ Config file
+11:32:34 PM:   /opt/build/repo/netlify.toml
+11:32:34 PM: ​
+11:32:34 PM: ❯ Context
+11:32:34 PM:   production
+11:32:34 PM: ​
+11:32:34 PM: Build command from Netlify app                                
+11:32:34 PM: ────────────────────────────────────────────────────────────────
+11:32:34 PM: ​
+11:32:34 PM: $ npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm --filter @workspace/internship-expo run build:netlify
+11:32:35 PM: npm error code EEXIST
+11:32:35 PM: npm error path /opt/buildhome/.nvm/versions/node/v22.22.2/bin/pnpm
+11:32:35 PM: npm error EEXIST: file already exists
+11:32:35 PM: npm error File exists: /opt/buildhome/.nvm/versions/node/v22.22.2/bin/pnpm
+11:32:35 PM: npm error Remove the existing file and try again, or run npm
+11:32:35 PM: npm error with --force to overwrite files recklessly.
+11:32:35 PM: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2026-04-02T20_32_35_025Z-debug-0.log
+11:32:35 PM: ​
+11:32:35 PM: "build.command" failed                                        
+11:32:35 PM: ────────────────────────────────────────────────────────────────
+11:32:35 PM: ​
+11:32:35 PM:   Error message
+11:32:35 PM:   Command failed with exit code 1: npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm --filter @workspace/internship-expo run build:netlify (https://ntl.fyi/exit-code-1)
+11:32:35 PM: ​
+11:32:35 PM:   Error location
+11:32:35 PM:   In Build command from Netlify app:
+11:32:35 PM:   npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm --filter @workspace/internship-expo run build:netlify
+11:32:35 PM: ​
+11:32:35 PM:   Resolved config
+11:32:35 PM:   build:
+11:32:35 PM:     base: /opt/build/repo/site
+11:32:35 PM:     command: npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm
+11:32:35 PM:       --filter @workspace/internship-expo run build:netlify
+11:32:35 PM:     commandOrigin: ui
+11:32:35 PM:     publish: /opt/build/repo/site
+11:32:35 PM:     publishOrigin: config
+11:32:35 PM:   redirects:
+11:32:35 PM:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+11:32:35 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+11:32:35 PM: Failing build: Failed to build site
+11:32:36 PM: Finished processing build request in 7.589s
+11:32:35 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
