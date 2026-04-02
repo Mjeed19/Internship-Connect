@@ -9,7 +9,6 @@ const WA_PRV =
 const WA_MTG =
   "https://wa.me/966534831944?text=%D8%A3%D9%88%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8";
 const EMAIL = "pr.technationclub@gmail.com";
-const FORMSPREE = "https://formspree.io/f/mnndorva";
 
 const SVGWa = () => (
   <svg
@@ -93,59 +92,6 @@ function useCountdown() {
 export default function Home() {
   const cd = useCountdown();
   const [faq, setFaq] = useState<number | null>(null);
-  const [booth, setBooth] = useState<"" | "own" | "provided">("");
-  const [f, setF] = useState({
-    org: "",
-    name: "",
-    phone: "",
-    email: "",
-    notes: "",
-  });
-  const upd = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }));
-  const [busy, setBusy] = useState(false);
-  const [done, setDone] = useState(false);
-  const [err, setErr] = useState("");
-
-  const send = async () => {
-    if (!f.org || !f.name || !f.email) {
-      setErr("يرجى تعبئة الحقول المطلوبة");
-      return;
-    }
-    setErr("");
-    setBusy(true);
-    try {
-      const res = await fetch(FORMSPREE, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          الجهة: f.org,
-          المسؤول: f.name,
-          البريد: f.email,
-          الجوال: f.phone,
-          "خيار البوث":
-            booth === "own"
-              ? "بوث خاص"
-              : booth === "provided"
-                ? "بوث مقدَّم"
-                : "لم يُحدَّد",
-          ملاحظات: f.notes,
-          _subject: `طلب مشاركة — روافد فنتك 2026 — ${f.org}`,
-        }),
-      });
-      const d = await res.json();
-      if (d.ok || d.next) {
-        setDone(true);
-        setF({ org: "", name: "", phone: "", email: "", notes: "" });
-        setBooth("");
-      } else setErr("حدث خطأ — تواصل عبر واتساب");
-    } catch {
-      setErr("تواصل عبر واتساب مباشرة");
-    }
-    setBusy(false);
-  };
 
   return (
     <div dir="rtl">
@@ -601,7 +547,7 @@ export default function Home() {
       {/* CONTACT */}
       <section className="sec sec-darker" id="contact">
         <div className="wrap">
-          <div className="ct-grid">
+          <div className="ct-grid" style={{ gridTemplateColumns: "1fr" }}>
             <Rev>
               <div className="lbl lt">سجّل الآن</div>
               <h2 className="h2 wt" style={{ marginBottom: 8 }}>
@@ -610,7 +556,15 @@ export default function Home() {
                 كـ<em>جهة تدريب</em>
               </h2>
               <p className="ct-sub">الأماكن محدودة وتُخصَّص بحسب الأولوية.</p>
-              <div className="ct-cards">
+              <div style={{ display:"flex", gap:12, flexWrap:"wrap", marginTop:20 }}>
+                <a href={WA} target="_blank" rel="noreferrer" className="btn-p" style={{ display:"inline-flex", alignItems:"center", gap:8, textDecoration:"none" }}>
+                  <SVGWa /> سجّل عبر واتساب
+                </a>
+                <a href={WA_MTG} target="_blank" rel="noreferrer" className="btn-wa-sm" style={{ display:"inline-flex", alignItems:"center", gap:8 }}>
+                  <SVGWa /> احجز اجتماعاً
+                </a>
+              </div>
+              <div className="ct-cards" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginTop:24 }}>
                 <div className="ccard">
                   <div className="cc-ico">📧</div>
                   <div>
@@ -653,247 +607,10 @@ export default function Home() {
               </div>
             </Rev>
 
-            <Rev ms={100}>
-              <div className="form-box">
-                <div className="form-hdr">
-                  <div className="form-hdr-dot" />
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: "'Cairo',sans-serif",
-                        fontSize: ".95rem",
-                        fontWeight: 900,
-                        color: "#fff",
-                      }}
-                    >
-                      سجّل جهتك الآن
-                    </div>
-                    <div
-                      style={{
-                        fontSize: ".68rem",
-                        color: "rgba(255,255,255,.3)",
-                        marginTop: 2,
-                      }}
-                    >
-                      مجاني · الفريق يتواصل خلال 24 ساعة
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "0 12px",
-                  }}
-                >
-                  <div className="fg">
-                    <label>
-                      اسم الجهة <span style={{ color: "#f87171" }}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="اسم المؤسسة"
-                      value={f.org}
-                      onChange={(e) => upd("org", e.target.value)}
-                    />
-                  </div>
-                  <div className="fg">
-                    <label>
-                      اسم المسؤول <span style={{ color: "#f87171" }}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="الاسم الكامل"
-                      value={f.name}
-                      onChange={(e) => upd("name", e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "0 12px",
-                  }}
-                >
-                  <div className="fg">
-                    <label>الجوال / واتساب</label>
-                    <input
-                      type="tel"
-                      placeholder="05xxxxxxxx"
-                      style={{ direction: "ltr" }}
-                      value={f.phone}
-                      onChange={(e) => upd("phone", e.target.value)}
-                    />
-                  </div>
-                  <div className="fg">
-                    <label>
-                      البريد الإلكتروني{" "}
-                      <span style={{ color: "#f87171" }}>*</span>
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="your@email.com"
-                      style={{ direction: "ltr" }}
-                      value={f.email}
-                      onChange={(e) => upd("email", e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div style={{ marginBottom: 14 }}>
-                  <label
-                    style={{
-                      display: "block",
-                      fontSize: ".68rem",
-                      color: "rgba(255,255,255,.34)",
-                      marginBottom: 8,
-                      fontWeight: 700,
-                    }}
-                  >
-                    خيار البوث
-                  </label>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 8,
-                    }}
-                  >
-                    {(
-                      [
-                        {
-                          k: "own",
-                          icon: "🏗️",
-                          t: "بوثي الخاص",
-                          d: "أحضر تصميمي",
-                        },
-                        {
-                          k: "provided",
-                          icon: "✨",
-                          t: "بوث مقدَّم",
-                          d: "مجهَّز بهويتي",
-                        },
-                      ] as const
-                    ).map((opt) => (
-                      <div
-                        key={opt.k}
-                        onClick={() => setBooth(opt.k)}
-                        className={`booth-choice${booth === opt.k ? " active" : ""}`}
-                      >
-                        <div style={{ fontSize: "1.3rem", marginBottom: 3 }}>
-                          {opt.icon}
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "'Cairo',sans-serif",
-                            fontSize: ".82rem",
-                            fontWeight: 800,
-                          }}
-                        >
-                          {opt.t}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: ".63rem",
-                            opacity: 0.5,
-                            marginTop: 1,
-                          }}
-                        >
-                          {opt.d}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="fg">
-                  <label>ملاحظات (اختياري)</label>
-                  <textarea
-                    placeholder="أي تفاصيل إضافية..."
-                    value={f.notes}
-                    onChange={(e) => upd("notes", e.target.value)}
-                    style={{ minHeight: 52 }}
-                  />
-                </div>
-                {err && (
-                  <p
-                    style={{
-                      color: "#f87171",
-                      fontSize: ".76rem",
-                      marginBottom: 8,
-                      textAlign: "center",
-                    }}
-                  >
-                    {err}
-                  </p>
-                )}
-                <button className="form-btn" onClick={send} disabled={busy}>
-                  {busy ? "جاري الإرسال…" : "إرسال الطلب — مجاناً"}
-                </button>
-              </div>
-            </Rev>
           </div>
         </div>
       </section>
 
-      {/* THANK YOU */}
-      <div className={`ty-overlay${done ? " open" : ""}`}>
-        <div className="ty-box">
-          <div style={{ fontSize: "2.4rem", marginBottom: 12 }}>🎉</div>
-          <h3
-            style={{
-              fontFamily: "'Cairo',sans-serif",
-              fontSize: "1.3rem",
-              fontWeight: 900,
-              color: "#fff",
-              marginBottom: 8,
-            }}
-          >
-            تم إرسال طلبك!
-          </h3>
-          <p
-            style={{
-              fontSize: ".84rem",
-              color: "rgba(255,255,255,.48)",
-              lineHeight: 1.8,
-              marginBottom: 22,
-            }}
-          >
-            سيتواصل معك الفريق خلال 24 ساعة.
-          </p>
-          <a
-            href={WA}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-p"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              textDecoration: "none",
-              marginBottom: 12,
-            }}
-          >
-            <SVGWa />
-            تواصل عبر واتساب
-          </a>
-          <br />
-          <button
-            onClick={() => setDone(false)}
-            style={{
-              background: "transparent",
-              border: "1px solid rgba(255,255,255,.12)",
-              color: "rgba(255,255,255,.4)",
-              padding: "7px 18px",
-              borderRadius: 7,
-              cursor: "pointer",
-              fontFamily: "'Tajawal',sans-serif",
-              fontSize: ".82rem",
-            }}
-          >
-            إغلاق
-          </button>
-        </div>
-      </div>
 
       {/* FOOTER */}
       <footer>
