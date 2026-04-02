@@ -560,9 +560,6 @@ export default function Home() {
                 <a href={WA} target="_blank" rel="noreferrer" className="btn-p" style={{ display:"inline-flex", alignItems:"center", gap:8, textDecoration:"none" }}>
                   <SVGWa /> سجّل عبر واتساب
                 </a>
-                <a href={WA_MTG} target="_blank" rel="noreferrer" className="btn-wa-sm" style={{ display:"inline-flex", alignItems:"center", gap:8 }}>
-                  <SVGWa /> احجز اجتماعاً
-                </a>
               </div>
               <div className="ct-cards" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginTop:24 }}>
                 <div className="ccard">
