@@ -217,6 +217,7 @@ export default function Home() {
             <span className="grad-text">روافد فنتك</span>
           </h1>
           <div className="h-sponsor animate-fu-1">
+            <div className="h-sponsor-sub">باشراف كلية علوم الحاسب وكلية الاعمال</div>
             برعاية جامعة الإمام محمد بن سعود الإسلامية
           </div>
           <div className="h-date animate-fu-2">
