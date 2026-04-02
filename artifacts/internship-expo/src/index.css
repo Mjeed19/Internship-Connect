@@ -103,10 +103,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--green4); color: var
 .dot-live { width:5px; height:5px; background:var(--glt); border-radius:50%; animation:pulse-dot 1.6s infinite; display:inline-block; }
 
 .grad-text {
-  background: linear-gradient(135deg, var(--glt) 0%, var(--mint) 38%, var(--purple-lt) 75%, var(--blue-lt) 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; animation: sh 6s ease infinite;
+  color: var(--glt);
 }
 
 /* ═══ REVEAL ═══ */
