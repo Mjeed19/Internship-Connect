@@ -1,10 +1,5 @@
 [build]
-  base    = "."
-  command = "pnpm --filter @workspace/internship-expo run build:netlify"
-  publish = "artifacts/internship-expo/dist"
-
-[build.environment]
-  NODE_VERSION  = "20"
+  publish = "site"
 
 [[redirects]]
   from   = "/*"
