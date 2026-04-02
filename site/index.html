@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معرض روافد فنتك 2026</title>
+<meta name="description" content="معرض التدريب التعاوني في قطاع التقنية المالية — 5–6 مايو 2026 · جامعة الإمام محمد بن سعود الإسلامية، الرياض">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050E08;--surf:rgba(255,255,255,.04);
+  --green:#1A5E3E;--gm:#1E6B47;--glt:#28A66B;
+  --purple:#6B3FA0;--purple-lt:#9B6FCC;
+  --blue:#1B2F8E;--blue-lt:#3D5EC4;--mint:#6FD4A0;
+  --ink:#fff;--muted:rgba(255,255,255,.4);
+  --border:rgba(255,255,255,.08);
+}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── KEYFRAMES ── */
+@keyframes gm{from{background-position:0 0}to{background-position:64px 64px}}
+@keyframes ou{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.04)}}
+@keyframes sh{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sl{0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1);transform-origin:bottom}}
+@keyframes reveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:12px clamp(14px,4vw,48px);background:rgba(5,14,8,.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(40,166,107,.1)}
+.n-logo{display:flex;align-items:center;gap:10px}
+.n-brand{font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:800;color:#fff}
+.n-brand span{color:var(--glt)}
+.n-sub{font-size:.6rem;color:var(--muted);margin-top:1px}
+.n-links{display:flex;gap:20px;list-style:none}
+.n-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
+.n-links a:hover{color:#fff}
+.n-btn{background:var(--green);color:#fff;padding:8px 18px;border-radius:7px;font-weight:700;font-size:.82rem;border:1px solid var(--glt);text-decoration:none;transition:all .25s;white-space:nowrap}
+.n-btn:hover{background:var(--gm)}
+@media(max-width:640px){.n-links{display:none}.n-sub{display:none}}
+
+/* ── HERO ── */
+.hero{min-height:100svh;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px clamp(14px,4vw,40px) 90px}
+.h-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 130% 70% at 50% -5%,rgba(26,94,62,.45) 0%,transparent 55%),radial-gradient(ellipse 55% 55% at 5% 95%,rgba(107,63,160,.12) 0%,transparent 50%),radial-gradient(ellipse 40% 40% at 95% 85%,rgba(61,94,196,.09) 0%,transparent 50%)}
+.h-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(40,166,107,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(40,166,107,.04) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 88% 88% at 50% 38%,black 20%,transparent 74%);animation:gm 22s linear infinite}
+.orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb-a{width:520px;height:520px;top:-160px;right:-110px;background:radial-gradient(circle,rgba(26,94,62,.14) 0%,transparent 70%);animation:ou 8s ease-in-out infinite}
+.orb-b{width:380px;height:380px;bottom:-90px;left:-80px;background:radial-gradient(circle,rgba(107,63,160,.12) 0%,transparent 70%);animation:ou 8s ease-in-out -4s infinite}
+.orb-c{width:280px;height:280px;top:30%;right:5%;background:radial-gradient(circle,rgba(61,94,196,.07) 0%,transparent 70%);animation:ou 11s ease-in-out -2s infinite}
+.h-glow{position:absolute;bottom:0;left:0;right:0;height:1px;z-index:2;background:linear-gradient(90deg,transparent,rgba(40,166,107,.4) 30%,rgba(107,63,160,.45) 60%,rgba(61,94,196,.35) 85%,transparent)}
+.h-content{position:relative;z-index:4;width:100%;max-width:780px;animation:fu .8s ease both}
+.h-sub{font-size:.38em;font-weight:700;letter-spacing:4px;color:rgba(255,255,255,.5);display:block;margin-bottom:6px}
+.h-title{font-family:'Cairo',sans-serif;font-size:clamp(2.6rem,7.5vw,6.4rem);font-weight:900;line-height:1;color:#fff;letter-spacing:-1.5px;margin-bottom:14px;text-shadow:0 4px 40px rgba(0,0,0,.3)}
+.grad{background:linear-gradient(135deg,var(--glt) 0%,var(--mint) 38%,var(--purple-lt) 75%,var(--blue-lt) 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sh 6s ease infinite}
+.h-sponsor{font-size:1.15rem;color:rgba(255,255,255,.55);margin-top:10px;margin-bottom:28px;font-family:'Cairo',sans-serif;font-weight:700;line-height:1.5}
+.h-sponsor small{display:block;font-size:.7rem;color:rgba(255,255,255,.3);font-family:'Tajawal',sans-serif;font-weight:500;margin-bottom:4px}
+.h-date{display:inline-flex;border:1px solid rgba(255,255,255,.09);border-radius:10px;overflow:hidden;margin-bottom:28px}
+.hd{padding:12px 22px;text-align:center;border-left:1px solid rgba(255,255,255,.07)}
+.hd:last-child{border-left:none}
+.hd-v{font-family:'Cairo',sans-serif;font-size:1rem;font-weight:900;color:#fff;line-height:1}
+.hd-l{font-size:.58rem;color:rgba(255,255,255,.32);margin-top:3px}
+.h-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-p{background:linear-gradient(135deg,var(--green) 0%,#3A2878 100%);color:#fff;padding:14px 30px;border:1px solid rgba(40,166,107,.28);border-radius:8px;font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(26,94,62,.35);text-decoration:none;display:inline-block}
+.btn-p:hover{background:linear-gradient(135deg,var(--gm) 0%,#4A3090 100%);transform:translateY(-2px);box-shadow:0 8px 26px rgba(107,63,160,.35)}
+.btn-s{background:rgba(255,255,255,.06);color:rgba(255,255,255,.78);padding:14px 22px;border:1px solid rgba(255,255,255,.14);border-radius:8px;font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
+.btn-s:hover{background:rgba(255,255,255,.11);color:#fff}
+.h-countdown{display:flex;gap:5px;justify-content:center;margin-top:18px}
+.hcd{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:6px 10px;text-align:center;min-width:48px}
+.hcd-n{font-family:'Cairo',sans-serif;font-size:1rem;font-weight:900;color:var(--glt);line-height:1;font-variant-numeric:tabular-nums}
+.hcd-l{font-size:.48rem;color:rgba(255,255,255,.32);margin-top:3px;letter-spacing:1px}
+.h-scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:4}
+.scroll-line{width:1px;height:30px;background:linear-gradient(to bottom,rgba(40,166,107,.6),rgba(107,63,160,.3),transparent);animation:sl 2s ease-in-out infinite;margin:0 auto}
+
+/* ── STATS ── */
+.stats{display:flex;border-bottom:1px solid var(--border);background:rgba(5,14,8,.85);backdrop-filter:blur(8px)}
+.stat{flex:1;padding:20px 24px;text-align:center;border-left:1px solid var(--border)}
+.stat:last-child{border-left:none}
+.stat-n{font-family:'Cairo',sans-serif;font-size:1.7rem;font-weight:900;color:#fff;line-height:1}
+.stat-l{font-size:.64rem;color:rgba(255,255,255,.32);margin-top:5px;letter-spacing:.5px}
+
+/* ── SECTION UTILS ── */
+.sec{padding:80px 0}
+.wrap{max-width:1220px;margin:0 auto;padding:0 clamp(16px,4vw,52px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:800;letter-spacing:3.5px;text-transform:uppercase;color:var(--glt);margin-bottom:10px}
+.eyebrow::before{content:'';width:14px;height:2px;background:var(--glt);display:inline-block;flex-shrink:0}
+.eyebrow.dk{color:var(--green)}
+.eyebrow.dk::before{background:var(--green)}
+.eyebrow.center{justify-content:center}
+h2.title{font-family:'Cairo',sans-serif;font-size:clamp(1.7rem,2.7vw,2.5rem);font-weight:900;line-height:1.15;color:var(--ink)}
+h2.title em{color:var(--glt);font-style:normal}
+.revealable{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.revealable.visible{opacity:1;transform:translateY(0)}
+
+/* ── WHY ── */
+.why{background:var(--bg);padding:90px 0;position:relative;overflow:hidden}
+.why::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(26,94,62,.15) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.why::after{content:'';position:absolute;bottom:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(107,63,160,.09) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.wcard{position:relative;background:rgba(255,255,255,.028);border:1px solid rgba(40,166,107,.1);border-radius:16px;padding:32px 26px 26px;overflow:hidden;transition:all .35s;cursor:default}
+.wcard:hover{border-color:rgba(40,166,107,.28);background:rgba(255,255,255,.05);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.wcard-num{position:absolute;top:12px;left:18px;font-family:'Cairo',sans-serif;font-size:3.5rem;font-weight:900;color:rgba(255,255,255,.03);line-height:1;user-select:none}
+.wcard-icon{font-size:1.7rem;margin-bottom:12px}
+.wcard-title{font-family:'Cairo',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
+.wcard-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.75}
+.wcard-line{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--glt),transparent);transform:scaleX(0);transition:transform .45s}
+.wcard:hover .wcard-line{transform:scaleX(1)}
+
+/* ── VENUE ── */
+.venue{background:var(--bg);padding:80px clamp(16px,4vw,60px)}
+.venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto}
+.venue-img-frame{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.venue-img-frame img{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block}
+.venue-img-grad{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,14,8,.3) 0%,transparent 50%,rgba(5,14,8,.45) 100%)}
+.venue-coord{position:absolute;bottom:12px;left:12px;font-size:.58rem;color:rgba(255,255,255,.35);letter-spacing:1.5px;font-family:monospace;background:rgba(5,14,8,.5);backdrop-filter:blur(8px);padding:4px 9px;border-radius:4px}
+.v-corner{position:absolute;width:18px;height:18px}
+.v-corner.tl{top:10px;right:10px;border-top:2px solid var(--glt);border-right:2px solid var(--glt)}
+.v-corner.tr{top:10px;left:10px;border-top:2px solid var(--glt);border-left:2px solid var(--glt)}
+.v-corner.bl{bottom:10px;right:10px;border-bottom:2px solid var(--glt);border-right:2px solid var(--glt)}
+.v-corner.br{bottom:10px;left:10px;border-bottom:2px solid var(--glt);border-left:2px solid var(--glt)}
+.venue-info .eyebrow{margin-bottom:16px}
+.venue-title{font-family:'Cairo',sans-serif;font-size:clamp(1.5rem,3vw,2.4rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 20px}
+.venue-title span{color:rgba(255,255,255,.5);font-weight:700}
+.venue-divider{width:48px;height:2px;background:linear-gradient(90deg,var(--glt),transparent);margin-bottom:24px;border-radius:2px}
+.venue-meta{display:flex;flex-direction:column;gap:14px}
+.vmeta{display:flex;align-items:center;gap:14px}
+.vmeta-icon{width:36px;height:36px;border-radius:9px;background:rgba(40,166,107,.1);border:1px solid rgba(40,166,107,.2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.vmeta-v{font-family:'Cairo',sans-serif;font-size:.9rem;font-weight:700;color:#fff}
+.vmeta-l{font-size:.62rem;color:rgba(255,255,255,.3);margin-top:1px}
+
+/* ── BOOTH ── */
+.booth{background:linear-gradient(180deg,var(--green3,#0B3320) 0%,#081822 100%);padding:90px 0;border-top:1px solid rgba(40,166,107,.07);border-bottom:1px solid rgba(107,63,160,.07)}
+.booth-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bcard{border-radius:16px;overflow:hidden;border:1px solid rgba(40,166,107,.14);transition:transform .3s,box-shadow .3s}
+.bcard:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.bcard-hdr{padding:26px 24px 22px}
+.bcard-name{font-family:'Cairo',sans-serif;font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:4px}
+.bcard-sub{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.5px}
+.bcard-icon{font-size:2rem;line-height:1}
+.bcard-desc{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.7;margin-top:12px}
+.bcard-body{padding:20px 24px;background:rgba(5,14,8,.5)}
+.bcard-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.bcheck{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;flex-shrink:0;margin-top:1px}
+.bcard-item span{font-size:.83rem;color:rgba(255,255,255,.6);line-height:1.6}
+.bcard-tag{font-size:.68rem;color:rgba(255,255,255,.3);margin:14px 0 16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+.bcard-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#25D366;padding:11px 0;border-radius:8px;font-family:'Cairo',sans-serif;font-size:.84rem;font-weight:700;text-decoration:none;transition:all .2s}
+.bcard-wa:hover{background:rgba(37,211,102,.18)}
+.bcard-wa svg{width:16px;height:16px;fill:#25D366;flex-shrink:0}
+
+/* ── ORGS ── */
+.orgs{background:var(--bg);padding:80px 0}
+.orgs-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:10px 24px;max-width:900px;margin:0 auto}
+.pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1.5px solid rgba(40,166,107,.12);border-radius:100px;padding:9px 18px;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);white-space:nowrap;transition:border-color .25s}
+.pill:hover{border-color:rgba(40,166,107,.3)}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;opacity:.85}
+
+/* ── FAQ ── */
+.faq-sec{background:rgba(255,255,255,.015);padding:80px 0}
+.faq-list{display:flex;flex-direction:column;gap:8px;margin-top:36px;margin-bottom:28px;max-width:760px;margin-left:auto;margin-right:auto}
+.faq-item{border:1px solid rgba(40,166,107,.12);border-radius:11px;overflow:hidden;background:rgba(255,255,255,.03)}
+.faq-q{padding:16px 20px;font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#fff;transition:background .2s}
+.faq-q:hover{background:rgba(255,255,255,.03)}
+.faq-icon{font-size:1.2rem;color:var(--glt);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-a p{padding:0 20px 16px;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.8}
+.faq-item.open .faq-a{max-height:200px}
+
+/* ── MEETING STRIP ── */
+.mtg{display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(40,166,107,.06);border:1px solid rgba(40,166,107,.15);border-radius:14px;padding:20px 24px;max-width:760px;margin:0 auto;flex-wrap:wrap}
+.mtg-icon{font-size:1.5rem}
+.mtg-title{font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800;color:#fff}
+.mtg-sub{font-size:.76rem;color:rgba(255,255,255,.4);margin-top:3px}
+.btn-wa{display:flex;align-items:center;gap:8px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#25D366;padding:10px 18px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;transition:all .2s;white-space:nowrap}
+.btn-wa:hover{background:rgba(37,211,102,.2)}
+.btn-wa svg{width:16px;height:16px;fill:#25D366}
+
+/* ── CONTACT ── */
+.contact{background:#0B3320;padding:90px 0}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.lbl{display:inline-flex;align-items:center;gap:7px;font-size:.67rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:10px}
+.lbl::before{content:'';width:12px;height:2px;background:rgba(255,255,255,.28);display:inline-block}
+.ct-h2{font-family:'Cairo',sans-serif;font-size:clamp(1.7rem,2.7vw,2.5rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:8px}
+.ct-h2 em{color:var(--glt);font-style:normal}
+.ct-sub{color:rgba(255,255,255,.35);font-size:.85rem;margin-bottom:28px}
+.ct-cards{display:flex;flex-direction:column;gap:10px}
+.ccard{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:14px 16px}
+.cc-ico{font-size:1.2rem;width:38px;text-align:center;flex-shrink:0}
+.cc-lbl{font-size:.63rem;color:rgba(255,255,255,.3);font-weight:700;letter-spacing:.5px;margin-bottom:3px}
+.cc-val{font-family:'Cairo',sans-serif;font-size:.88rem;font-weight:700;color:#fff}
+.cc-val a{color:var(--glt);text-decoration:none}
+
+/* ── FORM ── */
+.form-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:24px}
+.form-hdr{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.form-hdr-dot{width:8px;height:8px;border-radius:50%;background:var(--glt);flex-shrink:0}
+.form-hdr-title{font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:900;color:#fff}
+.form-hdr-sub{font-size:.68rem;color:rgba(255,255,255,.3);margin-top:2px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0}
+.fg{display:flex;flex-direction:column;margin-bottom:12px}
+.fg label{font-size:.68rem;color:rgba(255,255,255,.34);font-weight:700;margin-bottom:6px;letter-spacing:.5px}
+.fg input,.fg textarea,.fg select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 13px;color:#fff;font-family:'Tajawal',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;resize:none;width:100%}
+.fg input:focus,.fg textarea:focus{border-color:rgba(40,166,107,.45)}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.2)}
+.booth-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.bc{border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;cursor:pointer;transition:all .2s;text-align:center}
+.bc:hover{border-color:rgba(40,166,107,.3)}
+.bc.active{border-color:var(--glt);background:rgba(40,166,107,.1)}
+.bc-icon{font-size:1.3rem;margin-bottom:3px}
+.bc-title{font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.bc-sub{font-size:.63rem;color:rgba(255,255,255,.4);margin-top:1px}
+.form-btn{width:100%;background:linear-gradient(135deg,var(--green) 0%,#3A2878 100%);color:#fff;padding:13px;border:1px solid rgba(40,166,107,.28);border-radius:8px;font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(26,94,62,.35)}
+.form-btn:hover{background:linear-gradient(135deg,var(--gm) 0%,#4A3090 100%);transform:translateY(-1px)}
+.form-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.req{color:#f87171}
+
+/* ── THANK YOU ── */
+.ty-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.ty-overlay.open{opacity:1;pointer-events:all}
+.ty-box{background:#0B1E14;border:1px solid rgba(40,166,107,.2);border-radius:20px;padding:40px 36px;text-align:center;max-width:400px;width:90%}
+.ty-emoji{font-size:2.4rem;margin-bottom:12px}
+.ty-title{font-family:'Cairo',sans-serif;font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:8px}
+.ty-sub{font-size:.84rem;color:rgba(255,255,255,.45);line-height:1.8;margin-bottom:22px}
+.ty-close{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4);padding:7px 18px;border-radius:7px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.82rem;margin-top:10px}
+
+/* ── FOOTER ── */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:24px clamp(14px,4vw,48px)}
+.fi{display:flex;align-items:center;justify-content:space-between;max-width:1220px;margin:0 auto;flex-wrap:wrap;gap:12px}
+.fb{font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800;color:#fff}
+.fb span{color:rgba(255,255,255,.3);font-size:.7rem;display:block;margin-top:2px;font-family:'Tajawal',sans-serif;font-weight:400}
+.fc{font-size:.72rem;color:rgba(255,255,255,.25)}
+.fo-n{font-family:'Cairo',sans-serif;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.45);text-align:left}
+.fo-s{font-size:.65rem;color:rgba(255,255,255,.22);text-align:left;margin-top:2px}
+
+/* ── WA FLOATING ── */
+.wa-fab{position:fixed;bottom:20px;left:20px;z-index:600;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s,box-shadow .2s;text-decoration:none}
+.wa-fab:hover{transform:scale(1.1);box-shadow:0 8px 28px rgba(37,211,102,.55)}
+.wa-fab svg{width:26px;height:26px;fill:#fff}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  .why-grid,.venue-grid,.booth-grid,.ct-grid,.form-row{grid-template-columns:1fr}
+  .stats{flex-wrap:wrap}
+  .stat{flex:1 1 50%;border-bottom:1px solid var(--border)}
+  .h-btns{flex-direction:column;width:100%}
+  .btn-p,.btn-s{width:100%;text-align:center;padding:13px}
+  .mtg{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="n-logo">
+    <div>
+      <div class="n-brand">روافد <span>فنتك</span></div>
+      <div class="n-sub">معرض التدريب التعاوني · 2026</div>
+    </div>
+  </div>
+  <ul class="n-links">
+    <li><a href="#why">لماذا؟</a></li>
+    <li><a href="#booth">البوث</a></li>
+    <li><a href="#orgs">الجهات</a></li>
+    <li><a href="#faq">أسئلة</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <a href="#contact" class="n-btn">سجّل مجاناً</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="h-mesh"></div>
+  <div class="h-grid"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+  <div class="h-glow"></div>
+  <div class="h-content">
+    <h1 class="h-title">
+      <span class="h-sub">معرض</span>
+      <span class="grad">روافد فنتك</span>
+    </h1>
+    <div class="h-sponsor">
+      <small>باشراف كلية علوم الحاسب وكلية الاعمال</small>
+      برعاية جامعة الإمام محمد بن سعود الإسلامية
+    </div>
+    <div class="h-date">
+      <div class="hd"><div class="hd-v">5–6 مايو 2026</div><div class="hd-l">التاريخ</div></div>
+      <div class="hd"><div class="hd-v">12:00 – 8:30 م</div><div class="hd-l">الوقت</div></div>
+      <div class="hd"><div class="hd-v">بهو جامعة الإمام</div><div class="hd-l">الرياض</div></div>
+    </div>
+    <div class="h-btns">
+      <a href="#contact" class="btn-p">سجّل جهتك — مجاناً</a>
+      <a href="#meeting" class="btn-s">احجز اجتماعاً</a>
+    </div>
+    <div class="h-countdown">
+      <div class="hcd"><div class="hcd-n" id="cd-d">00</div><div class="hcd-l">يوم</div></div>
+      <div class="hcd"><div class="hcd-n" id="cd-h">00</div><div class="hcd-l">ساعة</div></div>
+      <div class="hcd"><div class="hcd-n" id="cd-m">00</div><div class="hcd-l">دقيقة</div></div>
+      <div class="hcd"><div class="hcd-n" id="cd-s">00</div><div class="hcd-l">ثانية</div></div>
+    </div>
+  </div>
+  <div class="h-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">+3000</div><div class="stat-l">طالب وطالبة</div></div>
+  <div class="stat"><div class="stat-n">يومان</div><div class="stat-l">تواجد مكثَّف</div></div>
+  <div class="stat"><div class="stat-n">100٪</div><div class="stat-l">مجاني للجهات</div></div>
+  <div class="stat"><div class="stat-n">قاعدة</div><div class="stat-l">بيانات المتدربين</div></div>
+</div>
+
+<!-- WHY -->
+<section class="why sec" id="why">
+  <div class="wrap">
+    <div class="revealable">
+      <div class="eyebrow">لماذا تشارك؟</div>
+      <h2 class="title" style="color:#fff;margin-bottom:40px">ما الذي تُضيفه <em>مشاركتك</em> لجهتك؟</h2>
+    </div>
+    <div class="why-grid">
+      <div class="wcard revealable">
+        <div class="wcard-num">01</div>
+        <div class="wcard-icon">🎯</div>
+        <div class="wcard-title">وصول مباشر لمواهب المستقبل</div>
+        <div class="wcard-desc">أكثر من 3000 طالب في قطاع التقنية المالية — اكتشف، قيّم، وتواصل مع أفضل المرشحين خلال يومين.</div>
+        <div class="wcard-line"></div>
+      </div>
+      <div class="wcard revealable">
+        <div class="wcard-num">02</div>
+        <div class="wcard-icon">🗄️</div>
+        <div class="wcard-title">قاعدة بيانات المتدربين</div>
+        <div class="wcard-desc">تحصل جهتك على قاعدة بيانات شاملة بأسماء الطلاب واهتماماتهم وبياناتهم للتواصل المباشر بعد المعرض.</div>
+        <div class="wcard-line"></div>
+      </div>
+      <div class="wcard revealable">
+        <div class="wcard-num">03</div>
+        <div class="wcard-icon">📣</div>
+        <div class="wcard-title">حضور إعلامي قبل وبعد</div>
+        <div class="wcard-desc">ذكر رسمي في جميع منصات المعرض، ريلز احترافي، وتقرير موثَّق — يبقى أثرك حياً بعد الفعالية.</div>
+        <div class="wcard-line"></div>
+      </div>
+      <div class="wcard revealable">
+        <div class="wcard-num">04</div>
+        <div class="wcard-icon">🏆</div>
+        <div class="wcard-title">تكريم وتوثيق رسمي</div>
+        <div class="wcard-desc">درع تكريمي وحزمة صور احترافية وشهادة مشاركة رسمية لتوثيق حضور جهتك في تاريخ القطاع.</div>
+        <div class="wcard-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue revealable" id="venue">
+  <div class="venue-grid">
+    <div class="venue-img-frame">
+      <img src="venue.webp" alt="بهو جامعة الإمام">
+      <div class="venue-img-grad"></div>
+      <div class="venue-coord">24°41′N · 46°41′E</div>
+      <div class="v-corner tl"></div>
+      <div class="v-corner tr"></div>
+      <div class="v-corner bl"></div>
+      <div class="v-corner br"></div>
+    </div>
+    <div class="venue-info">
+      <div class="eyebrow">📍 موقع الفعالية</div>
+      <h2 class="venue-title">بهو جامعة الإمام<br><span>محمد بن سعود الإسلامية</span></h2>
+      <div class="venue-divider"></div>
+      <div class="venue-meta">
+        <div class="vmeta">
+          <div class="vmeta-icon">📅</div>
+          <div><div class="vmeta-v">5 – 6 مايو 2026</div><div class="vmeta-l">التاريخ</div></div>
+        </div>
+        <div class="vmeta">
+          <div class="vmeta-icon">⏰</div>
+          <div><div class="vmeta-v">12:00 – 8:30 م</div><div class="vmeta-l">الوقت</div></div>
+        </div>
+        <div class="vmeta">
+          <div class="vmeta-icon">🏙️</div>
+          <div><div class="vmeta-v">الرياض</div><div class="vmeta-l">المدينة</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOTH -->
+<section class="booth sec" id="booth">
+  <div class="wrap">
+    <div class="revealable" style="text-align:center;margin-bottom:40px">
+      <div class="eyebrow center">خيارات البوث</div>
+      <h2 class="title" style="color:#fff;text-align:center">اختر طريقة <em>تواجدك</em></h2>
+      <p style="color:rgba(255,255,255,.38);font-size:.82rem;margin-top:6px">كلا الخيارين مجاني تماماً</p>
+    </div>
+    <div class="booth-grid">
+      <div class="bcard revealable">
+        <div class="bcard-hdr" style="background:linear-gradient(135deg,#13503D,#1B6B52)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div><div class="bcard-name">البوث الخاص</div><div class="bcard-sub">Bring Your Own Booth</div></div>
+            <div class="bcard-icon">🏗️</div>
+          </div>
+          <p class="bcard-desc">أحضر هويتك البصرية الكاملة — نوفر لك المساحة والدعم اللوجستي من أول يوم.</p>
+        </div>
+        <div class="bcard-body">
+          <div class="bcard-item"><div class="bcheck" style="background:#1B6B52">✓</div><span>مساحة مخصصة بأبعاد متفق عليها</span></div>
+          <div class="bcard-item"><div class="bcheck" style="background:#1B6B52">✓</div><span>طاقة كهربائية وإنترنت مخصص</span></div>
+          <div class="bcard-item"><div class="bcheck" style="background:#1B6B52">✓</div><span>لوحات وإشارات في خريطة المعرض</span></div>
+          <div class="bcard-item"><div class="bcheck" style="background:#1B6B52">✓</div><span>ذكر رسمي في جميع المواد الإعلامية</span></div>
+          <div class="bcard-tag">الأنسب للجهات ذات الهوية البصرية المميزة</div>
+          <a href="https://wa.me/966534831944?text=أريد%20التسجيل%20ببوث%20خاص%20في%20معرض%20روافد%20فنتك" target="_blank" class="bcard-wa">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            أريد هذا البوث — تواصل عبر واتساب
+          </a>
+        </div>
+      </div>
+      <div class="bcard revealable">
+        <div class="bcard-hdr" style="background:linear-gradient(135deg,#0A5C4F,#0D7D6C)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div><div class="bcard-name">البوث المقدَّم</div><div class="bcard-sub">Fully Equipped — جاهز بالكامل</div></div>
+            <div class="bcard-icon">✨</div>
+          </div>
+          <p class="bcard-desc">ركّز على المتدربين — نبني بوثك الاحترافي بشعارك وألوانك بالكامل، أنت لا تحمل شيئاً.</p>
+        </div>
+        <div class="bcard-body">
+          <div class="bcard-item"><div class="bcheck" style="background:#0D7D6C">✓</div><span>بوث احترافي بشعارك وألوانك</span></div>
+          <div class="bcard-item"><div class="bcheck" style="background:#0D7D6C">✓</div><span>طاولة وكراسي وشاشة 55"</span></div>
+          <div class="bcard-item"><div class="bcheck" style="background:#0D7D6C">✓</div><span>إنترنت مخصص وإضاءة LED</span></div>
+          <div class="bcard-item"><div class="bcheck" style="background:#0D7D6C">✓</div><span>فريق دعم متواصل خلال اليومين</span></div>
+          <div class="bcard-tag">الأنسب للجهات التي تريد راحة لوجستية تامة</div>
+          <a href="https://wa.me/966534831944?text=أريد%20التسجيل%20ببوث%20مقدم%20في%20معرض%20روافد%20فنتك" target="_blank" class="bcard-wa">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            أريد هذا البوث — تواصل عبر واتساب
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGS -->
+<section class="orgs sec" id="orgs">
+  <div class="wrap">
+    <div class="revealable" style="text-align:center;margin-bottom:36px">
+      <div class="eyebrow dk center">الجهات المشاركة</div>
+      <h2 class="title" style="text-align:center">في حضرة <em>قادة الصناعة</em></h2>
+      <p style="color:rgba(255,255,255,.4);font-size:.84rem;margin-top:6px">يُقيّم الطلاب مساركم مقارنةً بمن بجانبكم — اختر حضورك بعناية</p>
+    </div>
+  </div>
+  <div class="orgs-grid">
+    <div class="pill"><span class="dot" style="background:#00703c"></span>البنك المركزي السعودي</div>
+    <div class="pill"><span class="dot" style="background:#1B4F9A"></span>SDAIA</div>
+    <div class="pill"><span class="dot" style="background:#006837"></span>وزارة الاستثمار</div>
+    <div class="pill"><span class="dot" style="background:#007A53"></span>فنتك السعودية</div>
+    <div class="pill"><span class="dot" style="background:#1E3A5F"></span>الأكاديمية المالية</div>
+    <div class="pill"><span class="dot" style="background:#6A1F7A"></span>STC Bank</div>
+    <div class="pill"><span class="dot" style="background:#004B8D"></span>بنك الإنماء</div>
+    <div class="pill"><span class="dot" style="background:#003087"></span>بنك الرياض</div>
+    <div class="pill"><span class="dot" style="background:#00843D"></span>SIDF</div>
+    <div class="pill"><span class="dot" style="background:#D4521A"></span>تمارا</div>
+    <div class="pill"><span class="dot" style="background:#0F9B8E"></span>Tabby</div>
+    <div class="pill"><span class="dot" style="background:#4A5568"></span>Barq</div>
+    <div class="pill"><span class="dot" style="background:#6B3FA0"></span>Urpay</div>
+    <div class="pill"><span class="dot" style="background:#B8960C"></span>EY</div>
+    <div class="pill"><span class="dot" style="background:#E0301E"></span>PwC</div>
+    <div class="pill"><span class="dot" style="background:#007A53"></span>Fintech Saudi</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec sec" id="faq">
+  <div class="wrap">
+    <div class="revealable" style="text-align:center;margin-bottom:0">
+      <div class="eyebrow dk center">أسئلة شائعة</div>
+      <h2 class="title" style="text-align:center">ما يسألنا عنه <em>الجهات</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">هل المشاركة مجانية تماماً؟<span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>نعم — سواء البوث الخاص أو البوث المقدَّم المُجهَّز بشعارك وألوانك.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">ما الفرق بين البوثين؟<span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>البوث الخاص: تُحضر تصميمك الكامل ونوفر المساحة والخدمات. البوث المقدَّم: نُجهَّزه بشعارك وألوانك مع طاولة وشاشة وإنترنت وإضاءة.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">من الجمهور المتوقع؟<span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>أكثر من 3000 طالب وطالبة من جامعات الرياض يبحثون عن فرص تدريب تعاوني في التقنية المالية.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">ما الموعد النهائي للتسجيل؟<span class="faq-icon">+</span></div>
+        <div class="faq-a"><p>يُفضل التسجيل قبل شهر من الفعالية لضمان إدراج شعارك في جميع المواد وتجهيز البوث.</p></div>
+      </div>
+    </div>
+    <div class="mtg revealable" id="meeting">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="mtg-icon">📅</div>
+        <div>
+          <div class="mtg-title">تريد مناقشة التفاصيل أولاً؟</div>
+          <div class="mtg-sub">30 دقيقة زووم أو حضورياً — نشرح كل شيء قبل تسجيلك</div>
+        </div>
+      </div>
+      <a href="https://wa.me/966534831944?text=أريد%20حجز%20اجتماع%20لمناقشة%20المشاركة%20في%20معرض%20روافد%20فنتك" target="_blank" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        احجز عبر واتساب
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact sec" id="contact">
+  <div class="wrap">
+    <div class="ct-grid">
+      <div class="revealable">
+        <div class="lbl">سجّل الآن</div>
+        <h2 class="ct-h2">سجّل جهتك<br>كـ<em>جهة تدريب</em></h2>
+        <p class="ct-sub">الأماكن محدودة وتُخصَّص بحسب الأولوية.</p>
+        <div class="ct-cards">
+          <div class="ccard"><div class="cc-ico">📧</div><div><div class="cc-lbl">البريد</div><div class="cc-val"><a href="mailto:pr.technationclub@gmail.com">pr.technationclub@gmail.com</a></div></div></div>
+          <div class="ccard"><div class="cc-ico">📞</div><div><div class="cc-lbl">العلاقات العامة</div><div class="cc-val"><a href="tel:+966534831944" style="color:var(--glt)">0534831944</a></div></div></div>
+          <div class="ccard"><div class="cc-ico">🏫</div><div><div class="cc-lbl">الجهة المنظِّمة</div><div class="cc-val">نادي TechNation × نادي المالية</div></div></div>
+          <div class="ccard"><div class="cc-ico">📅</div><div><div class="cc-lbl">الموعد</div><div class="cc-val">5–6 مايو 2026 · بهو جامعة الإمام</div></div></div>
+        </div>
+      </div>
+      <div class="revealable">
+        <div class="form-box">
+          <div class="form-hdr">
+            <div class="form-hdr-dot"></div>
+            <div><div class="form-hdr-title">سجّل جهتك الآن</div><div class="form-hdr-sub">مجاني · الفريق يتواصل خلال 24 ساعة</div></div>
+          </div>
+          <form id="reg-form" action="https://formspree.io/f/mnndorva" method="POST">
+            <div class="form-row">
+              <div class="fg"><label>اسم الجهة <span class="req">*</span></label><input type="text" name="org" placeholder="اسم المؤسسة" required></div>
+              <div class="fg"><label>اسم المسؤول <span class="req">*</span></label><input type="text" name="name" placeholder="الاسم الكامل" required></div>
+            </div>
+            <div class="form-row">
+              <div class="fg"><label>الجوال / واتساب</label><input type="tel" name="phone" placeholder="05xxxxxxxx" style="direction:ltr"></div>
+              <div class="fg"><label>البريد الإلكتروني <span class="req">*</span></label><input type="email" name="email" placeholder="your@email.com" style="direction:ltr" required></div>
+            </div>
+            <div style="margin-bottom:12px">
+              <label style="display:block;font-size:.68rem;color:rgba(255,255,255,.34);margin-bottom:8px;font-weight:700">خيار البوث</label>
+              <div class="booth-choices">
+                <div class="bc active" onclick="selectBooth(this,'بوث خاص')">
+                  <div class="bc-icon">🏗️</div>
+                  <div class="bc-title">بوثي الخاص</div>
+                  <div class="bc-sub">أحضر تصميمي</div>
+                </div>
+                <div class="bc" onclick="selectBooth(this,'بوث مقدم')">
+                  <div class="bc-icon">✨</div>
+                  <div class="bc-title">بوث مقدَّم</div>
+                  <div class="bc-sub">مجهَّز بهويتي</div>
+                </div>
+              </div>
+              <input type="hidden" name="booth" id="booth-val" value="بوث خاص">
+            </div>
+            <div class="fg"><label>ملاحظات (اختياري)</label><textarea name="notes" placeholder="أي تفاصيل إضافية..." rows="3"></textarea></div>
+            <p id="form-err" style="color:#f87171;font-size:.76rem;margin-bottom:8px;text-align:center;display:none"></p>
+            <button type="submit" class="form-btn" id="form-btn">إرسال الطلب — مجاناً</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THANK YOU -->
+<div class="ty-overlay" id="ty">
+  <div class="ty-box">
+    <div class="ty-emoji">🎉</div>
+    <div class="ty-title">تم إرسال طلبك!</div>
+    <p class="ty-sub">سيتواصل معك الفريق خلال 24 ساعة.</p>
+    <a href="https://wa.me/966534831944" target="_blank" class="btn-p" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:10px">
+      <svg style="width:16px;height:16px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      تواصل عبر واتساب
+    </a>
+    <br>
+    <button class="ty-close" onclick="document.getElementById('ty').classList.remove('open')">إغلاق</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="fb">روافد فنتك <span>التدريب التعاوني · 2026</span></div>
+    <div class="fc">© 2026 جميع الحقوق محفوظة</div>
+    <div>
+      <div class="fo-n">جامعة الإمام محمد بن سعود الإسلامية</div>
+      <div class="fo-s">نادي TechNation · نادي المالية الطلابي</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOATING -->
+<a class="wa-fab" href="https://wa.me/966534831944" target="_blank" title="واتساب">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── COUNTDOWN ──
+(function(){
+  var target=new Date("2026-05-05T09:00:00Z").getTime();
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){diff=0}
+    var d=Math.floor(diff/86400000);
+    var h=Math.floor((diff%86400000)/3600000);
+    var m=Math.floor((diff%3600000)/60000);
+    var s=Math.floor((diff%60000)/1000);
+    document.getElementById("cd-d").textContent=String(d).padStart(2,"0");
+    document.getElementById("cd-h").textContent=String(h).padStart(2,"0");
+    document.getElementById("cd-m").textContent=String(m).padStart(2,"0");
+    document.getElementById("cd-s").textContent=String(s).padStart(2,"0");
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// ── FAQ ──
+document.querySelectorAll(".faq-q").forEach(function(q){
+  q.addEventListener("click",function(){
+    var item=q.parentElement;
+    var wasOpen=item.classList.contains("open");
+    document.querySelectorAll(".faq-item").forEach(function(i){i.classList.remove("open")});
+    if(!wasOpen)item.classList.add("open");
+  });
+});
+
+// ── BOOTH CHOICE ──
+function selectBooth(el,val){
+  document.querySelectorAll(".bc").forEach(function(b){b.classList.remove("active")});
+  el.classList.add("active");
+  document.getElementById("booth-val").value=val;
+}
+
+// ── FORM ──
+document.getElementById("reg-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var btn=document.getElementById("form-btn");
+  var err=document.getElementById("form-err");
+  btn.disabled=true;btn.textContent="جاري الإرسال…";err.style.display="none";
+  var data=new FormData(this);
+  fetch(this.action,{method:"POST",body:data,headers:{"Accept":"application/json"}})
+    .then(function(r){
+      if(r.ok){document.getElementById("ty").classList.add("open")}
+      else{err.textContent="حدث خطأ، حاول مجدداً.";err.style.display="block"}
+    })
+    .catch(function(){err.textContent="تعذّر الاتصال، حاول مجدداً.";err.style.display="block"})
+    .finally(function(){btn.disabled=false;btn.textContent="إرسال الطلب — مجاناً"});
+});
+
+// ── SCROLL REVEAL ──
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add("visible")});
+},{threshold:0.12});
+document.querySelectorAll(".revealable").forEach(function(el){obs.observe(el)});
+</script>
+</body>
+</html>
