@@ -1,7 +1,9 @@
 [build]
-  base    = "artifacts/internship-expo"
-  command = "pnpm install && pnpm vite build --config vite.netlify.config.ts"
+  command = "npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm --filter @workspace/internship-expo run build:netlify"
   publish = "artifacts/internship-expo/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [[redirects]]
   from   = "/*"
