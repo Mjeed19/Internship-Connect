@@ -310,12 +310,6 @@ export default function Home() {
               <span>محمد بن سعود الإسلامية</span>
             </h2>
             <div className="venue-divider" />
-            <a
-              href="https://maps.app.goo.gl/9Q5g1peVsTFr9H5A6"
-              target="_blank"
-              rel="noreferrer"
-              className="venue-map-btn"
-            >مكان اقامة المعرض</a>
             <div className="venue-meta-row">
               <div className="venue-meta-item">
                 <div className="venue-meta-icon">📅</div>
@@ -339,6 +333,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <a
+              href="https://maps.app.goo.gl/9Q5g1peVsTFr9H5A6"
+              target="_blank"
+              rel="noreferrer"
+              className="venue-map-btn"
+            >📍 مكان إقامة المعرض</a>
           </Rev>
         </div>
       </section>
