@@ -141,7 +141,6 @@ export default function Home() {
           سجّل جهتك
         </a>
       </nav>
-
       {/* HERO */}
       <section className="hero">
         <img
@@ -222,7 +221,6 @@ export default function Home() {
           <div className="scroll-line" />
         </div>
       </section>
-
       {/* STATS STRIP */}
       <div className="stats-strip">
         {[
@@ -237,7 +235,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-
       {/* WHY — dark cards with watermark numbers */}
       <section className="why-dark" id="why">
         <div className="wrap">
@@ -287,7 +284,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* VENUE SECTION */}
       <section className="venue-sec">
         <div className="venue-grid">
@@ -340,7 +336,6 @@ export default function Home() {
           </Rev>
         </div>
       </section>
-
       {/* BOOTH */}
       <section className="booth-sec" id="booth">
         <div className="wrap">
@@ -448,7 +443,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ORGS — animated double ticker */}
       <section className="orgs-sec" id="orgs">
         <div className="wrap">
@@ -470,9 +464,7 @@ export default function Home() {
                   marginTop: 6,
                   textAlign: "center",
                 }}
-              >
-                يُقيّم الطلاب مساركم مقارنةً بمن بجانبكم — اختر حضورك بعناية
-              </p>
+              >منظمات وشركات من صميم القطاع المالي والتقني السعودي</p>
             </div>
           </Rev>
         </div>
@@ -485,7 +477,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       {/* FAQ + Meeting strip */}
       <section className="sec sec-tinted" id="faq">
         <div className="wrap">
@@ -561,7 +552,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* CONTACT */}
       <section className="sec sec-darker" id="contact">
         <div className="wrap">
@@ -625,8 +615,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
       {/* FOOTER */}
       <footer>
         <div className="fi">
@@ -640,10 +628,8 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
       {/* VISITOR COUNTER */}
       <VisitorCounter />
-
       {/* WA FIXED */}
       <a
         className="wa-btn"
