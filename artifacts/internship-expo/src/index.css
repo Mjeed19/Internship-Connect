@@ -284,7 +284,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-i
 .faq-item.open .faq-a { max-height:200px; padding:0 20px 16px; }
 
 /* ═══ MEETING STRIP ═══ */
-.mtg-strip { background:linear-gradient(135deg,#0D2018 0%,#081208 100%); border:1px solid rgba(60,104,72,.30); border-radius:14px; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.mtg-strip { background:linear-gradient(135deg,#133D22 0%,#0D2818 100%); border:1px solid rgba(109,223,168,.28); border-radius:14px; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; cursor:pointer; transition:background .3s, border-color .3s, box-shadow .3s, transform .25s; }
+.mtg-strip:hover { background:linear-gradient(135deg,#1A5230 0%,#113520 100%); border-color:rgba(109,223,168,.55); box-shadow:0 8px 28px rgba(76,125,92,.35); transform:translateY(-2px); }
 .mtg-icon { font-size:1.5rem; flex-shrink:0; }
 .mtg-title { font-family:'Cairo',sans-serif; font-size:.95rem; font-weight:800; color:#fff; margin-bottom:2px; }
 .mtg-sub { font-size:.76rem; color:rgba(255,255,255,.4); line-height:1.5; }
