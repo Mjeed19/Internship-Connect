@@ -284,7 +284,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-i
 .faq-item.open .faq-a { max-height:200px; padding:0 20px 16px; }
 
 /* ═══ MEETING STRIP ═══ */
-.mtg-strip { background:linear-gradient(135deg,rgba(107,63,160,.35) 0%,rgba(80,40,130,.20) 100%); border:1px solid rgba(155,111,204,.30); border-radius:14px; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.mtg-strip { background:linear-gradient(135deg,#0D2018 0%,#081208 100%); border:1px solid rgba(60,104,72,.30); border-radius:14px; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
 .mtg-icon { font-size:1.5rem; flex-shrink:0; }
 .mtg-title { font-family:'Cairo',sans-serif; font-size:.95rem; font-weight:800; color:#fff; margin-bottom:2px; }
 .mtg-sub { font-size:.76rem; color:rgba(255,255,255,.4); line-height:1.5; }
