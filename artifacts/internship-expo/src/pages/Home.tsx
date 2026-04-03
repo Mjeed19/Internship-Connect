@@ -315,9 +315,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               className="venue-map-btn"
-            >
-              🗺️ افتح في خرائط جوجل
-            </a>
+            >مكان اقامة المعرض</a>
             <div className="venue-meta-row">
               <div className="venue-meta-item">
                 <div className="venue-meta-icon">📅</div>
